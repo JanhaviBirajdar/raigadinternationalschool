@@ -1,0 +1,14 @@
+.ridge-wrap {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  display: block;
+}
+.ridge-img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.ridge-wrap--flip {
+  transform: rotate(180deg);
+}

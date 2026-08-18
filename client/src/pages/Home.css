@@ -1,0 +1,93 @@
+/* Hero */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--indigo-d) 0%,
+    var(--indigo) 40%,
+    var(--maroon-d) 80%,
+    var(--maroon) 100%
+  );
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--nav-h) + 2rem);
+  padding-bottom: var(--sp-2xl);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(227,167,46,.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(36,64,44,.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-xl);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero__text { display: flex; flex-direction: column; gap: var(--sp-md); }
+.hero__title {
+  color: var(--white);
+  line-height: 1.05;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+.hero__title-accent {
+  background: linear-gradient(90deg, var(--gold), var(--gold-l));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__sub {
+  color: rgba(247,244,236,0.8);
+  font-size: var(--fs-lg);
+  max-width: 480px;
+  line-height: 1.7;
+  margin: 0;
+}
+.hero__cta-group { display: flex; gap: var(--sp-md); flex-wrap: wrap; }
+
+.hero__campus-img {
+  width: 100%;
+  border-radius: var(--r-xl);
+  box-shadow: 0 24px 64px rgba(0,0,0,.4);
+  border: 2px solid rgba(227,167,46,.25);
+}
+
+/* Stats */
+.stats-strip { padding: var(--sp-xl) 0; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-lg);
+  text-align: center;
+}
+.stat-item { padding: var(--sp-md); }
+
+/* Testimonials */
+.testimonial-card .card-body { display: flex; flex-direction: column; gap: var(--sp-sm); }
+.testimonial-author { display: flex; align-items: center; gap: 0.6rem; margin-top: auto; }
+.testimonial-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-d));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--maroon-d); font-weight: 700; font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .hero__inner   { grid-template-columns: 1fr; text-align: center; }
+  .hero__campus  { display: none; }
+  .hero__cta-group { justify-content: center; }
+  .stats-grid    { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 500px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
