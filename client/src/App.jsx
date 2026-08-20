@@ -26,9 +26,24 @@ function ScrollToTop() {
 /* ── Global scroll-reveal observer ── */
 function RevealObserver() {
   useEffect(() => {
+    // Respect prefers-reduced-motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      // Make all reveal elements immediately visible
+      document.querySelectorAll('.reveal').forEach((el) => {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
     const els = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }),
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      }),
       { threshold: 0.12 }
     );
     els.forEach((el) => obs.observe(el));

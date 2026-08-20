@@ -82,12 +82,12 @@ export default function Contact() {
               <span className="gold-line" />
 
               {status === 'success' && (
-                <div style={{ background: '#d1fae5', border: '1px solid #6ee7b7', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: '#065f46' }}>
+                <div style={{ background: 'var(--primary-light)', border: '1px solid var(--primary)', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: 'var(--primary-dark)' }}>
                   ✅ Message received! We'll respond within 1 business day.
                 </div>
               )}
               {status === 'error' && (
-                <div style={{ background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: '#991b1b' }}>
+                <div style={{ background: 'var(--maroon-l)', border: '1px solid var(--maroon)', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: 'var(--maroon-d)' }}>
                   ❌ Failed to send. Please email us directly.
                 </div>
               )}

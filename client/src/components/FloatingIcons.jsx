@@ -1,19 +1,18 @@
-import { useEffect, useRef } from 'react';
 import './FloatingIcons.css';
 
 const ICONS = [
-  { icon: '📖', label: 'book'       },
   { icon: '🌿', label: 'leaf'       },
-  { icon: '🪁', label: 'kite'       },
-  { icon: '🎓', label: 'mortarboard'},
-  { icon: '☀️', label: 'sun'        },
-  { icon: '🏔️', label: 'mountain'  },
-  { icon: '✏️', label: 'pencil'    },
+  { icon: '☁️', label: 'cloud'      },
+  { icon: '🕊', label: 'bird'       },
   { icon: '🌸', label: 'flower'     },
+  { icon: '☀️', label: 'sun'        },
+  { icon: '🍃', label: 'leafgreen'  },
+  { icon: '✨', label: 'sparkle'    },
+  { icon: '🌄', label: 'sunrise'    },
 ];
 
 /**
- * FloatingIcons — scattered animated emoji icons drifting gently.
+ * FloatingIcons — scattered animated nature icons drifting gently.
  * Wraps `children` and overlays the icons absolutely.
  */
 export default function FloatingIcons({ children, count = 6 }) {
@@ -30,9 +29,9 @@ export default function FloatingIcons({ children, count = 6 }) {
             style={{
               left:              `${10 + i * (80 / count)}%`,
               top:               `${15 + (i % 3) * 25}%`,
-              animationDelay:    `${i * 0.7}s`,
-              animationDuration: `${4 + i * 0.5}s`,
-              fontSize:          `${1.2 + (i % 3) * 0.4}rem`,
+              animationDelay:    `${i * 0.9}s`,
+              animationDuration: `${5 + i * 0.6}s`,
+              fontSize:          `${1.0 + (i % 3) * 0.3}rem`,
             }}
           >
             {it.icon}
