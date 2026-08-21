@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.jpeg';
 import './Footer.css';
 
 const LINKS = {
@@ -32,7 +33,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="footer__brand">
               <div className="footer__logo">
-                <span className="footer__logo-icon">⛰</span>
+                <img src={logo} alt="RIS Logo" className="footer__logo-img" />
                 <div>
                   <div className="footer__logo-name">Raigad</div>
                   <div className="footer__logo-sub">International School</div>

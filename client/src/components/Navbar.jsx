@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '../assets/logo.jpeg';
 import './Navbar.css';
 
 const NAV_LINKS = [
@@ -30,9 +31,7 @@ export default function Navbar() {
       <div className="container flex-between">
         {/* Logo */}
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <div className="navbar__logo-emblem">
-            <span className="logo-fort">⛰</span>
-          </div>
+          <img src={logo} alt="RIS Logo" className="navbar__logo-img" />
           <div className="navbar__logo-text">
             <span className="logo-name">Raigad</span>
             <span className="logo-sub">International School</span>

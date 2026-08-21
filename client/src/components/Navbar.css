@@ -23,18 +23,15 @@
   gap: 0.6rem;
   text-decoration: none;
 }
-.navbar__logo-emblem {
-  width: 42px; height: 42px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-blue), var(--sky-blue));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
+.navbar__logo-img {
+  width: 46px; height: 46px;
+  object-fit: contain;
   flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(23,105,224,.25);
   transition: transform var(--t-base);
+  filter: drop-shadow(0 2px 8px rgba(23,105,224,.20));
 }
-.navbar__logo:hover .navbar__logo-emblem {
-  transform: scale(1.05);
+.navbar__logo:hover .navbar__logo-img {
+  transform: scale(1.08);
 }
 .navbar__logo-text {
   display: flex; flex-direction: column; line-height: 1.1;
