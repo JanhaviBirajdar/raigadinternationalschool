@@ -1,172 +1,97 @@
-import { Link } from 'react-router-dom';
-import RidgeDivider from '../components/RidgeDivider';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Target, Flag, Users, Heart, Star, Sparkles, BookOpen } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
+import SectionTitle from '../components/SectionTitle';
 
-const TIMELINE = [
-  { year: '1999', event: 'School founded by the Raigad Education Trust on 5 acres near Panvel.' },
-  { year: '2004', event: 'CBSE affiliation obtained. First Board batch achieves 94% pass rate.' },
-  { year: '2009', event: 'New science block and library inaugurated. Student strength crosses 800.' },
-  { year: '2014', event: 'Sports complex with swimming pool opens. Senior secondary wing added.' },
-  { year: '2019', event: 'Expanded to 15-acre campus. Digital smart classrooms rolled out.' },
-  { year: '2024', event: '25th anniversary. 3,500+ alumni across India and abroad.' },
-];
-
-const LEADERSHIP = [
-  { name: 'Dr. Sunita Patil', role: 'Principal', emoji: '👩‍💼', bio: 'Ph.D. in Education from TISS. 25 years of school leadership. Champion of inclusive education.' },
-  { name: 'Mr. Arun Khedkar', role: 'Vice-Principal (Academics)', emoji: '👨‍🏫', bio: 'M.Ed., 18 years. Curriculum architect behind RIS\'s inquiry-based learning framework.' },
-  { name: 'Ms. Priya Naik', role: 'Head of Student Welfare', emoji: '👩‍🏫', bio: 'Counsellor and sports advocate. Leads the school\'s mental wellness programme.' },
-];
-
-const VALUES = [
-  { icon: '🌿', title: 'Rootedness', desc: 'We honour our region\'s history, ecology and culture as a living curriculum.' },
-  { icon: '🔭', title: 'Inquiry', desc: 'Questions are celebrated. Every child is a scientist, artist and storyteller.' },
-  { icon: '🤝', title: 'Community', desc: 'School, family and village grow together. No child is left behind.' },
-  { icon: '🌅', title: 'Rising', desc: 'Like the Sahyadri peaks, our students are always climbing — at their own pace.' },
-];
-
-export default function About() {
+const About = () => {
   return (
-    <main>
-      <title>About Us | Raigad International School</title>
-
-      {/* Hero */}
-      <section className="page-hero">
-        <div className="container">
-          <span className="overline" style={{ color: 'var(--gold-l)' }}>Our Story</span>
-          <h1>25 Years of Nurturing Excellence</h1>
-          <p>From a single classroom to a 15-acre thriving campus — rooted in Raigad, reaching the world.</p>
-        </div>
+    <div className="w-full pt-10 pb-20">
+      
+      {/* 1. Header */}
+      <section className="py-16 text-center max-w-4xl mx-auto px-4">
+        <AnimatedSection>
+          <div className="inline-block p-4 bg-brand-blue/10 text-brand-blue rounded-3xl mb-6">
+            <BookOpen size={48} />
+          </div>
+          <h1 className="text-5xl md:text-6xl font-black text-brand-dark mb-6">
+            Our Story & <span className="text-brand-coral">Values</span>
+          </h1>
+          <p className="text-xl text-gray-600 font-medium leading-relaxed">
+            Founded in 1995, Raigad International School has been at the forefront of innovative education, 
+            blending traditional values with modern teaching methodologies.
+          </p>
+        </AnimatedSection>
       </section>
 
-      <RidgeDivider flip bg="var(--sand)" />
-
-      {/* Vision & Mission */}
-      <section className="section bg-sand">
-        <div className="container">
-          <div className="grid-2" style={{ gap: 'var(--sp-2xl)', alignItems: 'center' }}>
-            <div>
-              <span className="overline">Vision</span>
-              <h2>To Inspire Every Child to Rise</h2>
-              <span className="gold-line" />
-              <p>
-                Raigad International School envisions a world where every young person, regardless of background, has access to education that kindles curiosity, builds character, and cultivates a sense of global citizenship.
-              </p>
-              <p>
-                Our students graduate not just with marks, but with the ability to think independently, communicate clearly, care deeply, and lead with integrity.
-              </p>
-            </div>
-            <div className="card" style={{ overflow: 'hidden' }}>
-              <img src="/assets/svg/campus.svg" alt="School campus" style={{ width: '100%' }} />
-              <div className="card-body">
-                <h4>Our Mission</h4>
-                <span className="gold-line" />
-                <p>
-                  To deliver a CBSE education enriched by the Sahyadri's natural classroom — blending academic rigour, experiential learning, arts, sports, and community service into a unified journey of growth.
+      {/* 2. Vision & Mission Flip Cards */}
+      <section className="py-16 bg-brand-light">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+          {/* Vision Card */}
+          <AnimatedSection delay={0.2} className="group perspective-1000 h-80">
+            <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              {/* Front */}
+              <div className="absolute inset-0 backface-hidden bg-white rounded-[40px] p-8 flex flex-col items-center justify-center text-center shadow-[8px_8px_16px_#e6e6e6,-8px_-8px_16px_#ffffff] border-4 border-brand-yellow">
+                <Target size={64} className="text-brand-yellow mb-6" />
+                <h2 className="text-3xl font-black text-brand-dark">Our Vision</h2>
+                <p className="text-gray-500 font-bold mt-4">Hover to reveal</p>
+              </div>
+              {/* Back */}
+              <div className="absolute inset-0 backface-hidden rotate-y-180 bg-brand-yellow rounded-[40px] p-8 flex items-center justify-center text-center shadow-xl">
+                <p className="text-2xl font-bold text-brand-dark leading-snug">
+                  "To be a globally recognized institution that empowers students to be compassionate, innovative, and responsible leaders of tomorrow."
                 </p>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
+
+          {/* Mission Card */}
+          <AnimatedSection delay={0.4} className="group perspective-1000 h-80">
+            <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              {/* Front */}
+              <div className="absolute inset-0 backface-hidden bg-white rounded-[40px] p-8 flex flex-col items-center justify-center text-center shadow-[8px_8px_16px_#e6e6e6,-8px_-8px_16px_#ffffff] border-4 border-brand-blue">
+                <Flag size={64} className="text-brand-blue mb-6" />
+                <h2 className="text-3xl font-black text-brand-dark">Our Mission</h2>
+                <p className="text-gray-500 font-bold mt-4">Hover to reveal</p>
+              </div>
+              {/* Back */}
+              <div className="absolute inset-0 backface-hidden rotate-y-180 bg-brand-blue rounded-[40px] p-8 flex items-center justify-center text-center shadow-xl">
+                <p className="text-xl font-bold text-white leading-snug">
+                  "To provide a holistic learning environment that nurtures intellectual curiosity, fosters creativity, and builds strong moral character through excellence in education."
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Values */}
-      <RidgeDivider bg="var(--indigo)" />
-      <section className="section bg-indigo">
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline" style={{ color: 'var(--gold-l)' }}>Our Core Values</span>
-            <h2 style={{ color: 'var(--white)' }}>What We Stand For</h2>
-            <span className="gold-line gold-line-center" />
-          </div>
-          <div className="grid-4">
-            {VALUES.map((v) => (
-              <div key={v.title} className="card reveal" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div className="card-body" style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '2.5rem', marginBottom: 'var(--sp-sm)' }}>{v.icon}</div>
-                  <h4 style={{ color: 'var(--gold)' }}>{v.title}</h4>
-                  <span className="gold-line gold-line-center" />
-                  <p style={{ color: 'rgba(247,244,236,0.75)' }}>{v.desc}</p>
+      {/* 3. Core Values */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionTitle title="Our Core Values" subtitle="The principles that guide our everyday actions." icon={Heart} color="brand-coral" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+            {[
+              { title: 'Integrity', icon: Star, color: 'brand-yellow' },
+              { title: 'Excellence', icon: Sparkles, color: 'brand-blue' },
+              { title: 'Compassion', icon: Heart, color: 'brand-coral' },
+              { title: 'Inclusivity', icon: Users, color: 'brand-green' },
+            ].map((value, i) => (
+              <AnimatedSection key={i} delay={i * 0.1}>
+                <div className={`border-2 border-${value.color} bg-white rounded-3xl p-8 text-center shadow-lg hover:-translate-y-2 transition-all`}>
+                  <div className={`w-20 h-20 mx-auto rounded-full bg-${value.color}/10 flex items-center justify-center text-${value.color} mb-6`}>
+                    <value.icon size={40} />
+                  </div>
+                  <h3 className="text-2xl font-black text-brand-dark">{value.title}</h3>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <RidgeDivider flip bg="var(--sand)" />
-
-      {/* Timeline */}
-      <section className="section bg-sand">
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline">History</span>
-            <h2>Our Journey Through Time</h2>
-            <span className="gold-line gold-line-center" />
-          </div>
-          <div className="timeline">
-            {TIMELINE.map((t, i) => (
-              <div key={t.year} className={`timeline-item ${i % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right'}`}>
-                <div className="timeline-year">{t.year}</div>
-                <div className="timeline-dot" />
-                <div className="timeline-content card">
-                  <div className="card-body"><p style={{ margin: 0 }}>{t.event}</p></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section className="section" style={{ background: 'var(--sand-d)' }}>
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline">Leadership</span>
-            <h2>The Team Behind the Vision</h2>
-            <span className="gold-line gold-line-center" />
-          </div>
-          <div className="grid-3">
-            {LEADERSHIP.map((l) => (
-              <div key={l.name} className="card reveal" style={{ textAlign: 'center' }}>
-                <div className="card-body">
-                  <div style={{ fontSize: '3rem', marginBottom: 'var(--sp-sm)' }}>{l.emoji}</div>
-                  <h4>{l.name}</h4>
-                  <span className="badge badge-gold" style={{ marginBottom: 'var(--sp-sm)' }}>{l.role}</span>
-                  <span className="gold-line gold-line-center" />
-                  <p>{l.bio}</p>
-                </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section bg-sand" style={{ textAlign: 'center' }}>
-        <div className="container">
-          <h2>Ready to Be Part of Our Story?</h2>
-          <span className="gold-line gold-line-center" />
-          <p style={{ maxWidth: 500, margin: '0 auto var(--sp-lg)' }}>Admissions for 2025–26 are open. Join the RIS family today.</p>
-          <Link to="/admissions" className="btn btn-primary" id="about-admissions-cta">Apply Now</Link>
-        </div>
-      </section>
-
-      <style>{`
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
-        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--maroon)); transform: translateX(-50%); }
-        .timeline-item { display: grid; grid-template-columns: 1fr 32px 1fr; align-items: center; gap: var(--sp-md); margin-bottom: var(--sp-lg); }
-        .timeline-year { font-family: 'Fraunces', serif; font-size: var(--fs-xl); font-weight: 700; color: var(--gold); }
-        .timeline-item--left .timeline-year { text-align: right; }
-        .timeline-item--right .timeline-year { order: 2; text-align: left; }
-        .timeline-item--right .timeline-dot  { order: 1; }
-        .timeline-item--right .timeline-content { order: 0; }
-        .timeline-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--gold); border: 3px solid var(--maroon); justify-self: center; }
-        @media (max-width: 600px) {
-          .timeline::before { left: 20px; }
-          .timeline-item { grid-template-columns: 32px 1fr; }
-          .timeline-year { display: none; }
-          .timeline-item--right .timeline-content { order: 1; }
-          .timeline-item--right .timeline-dot { order: 0; }
-        }
-      `}</style>
-    </main>
+    </div>
   );
-}
+};
+
+export default About;

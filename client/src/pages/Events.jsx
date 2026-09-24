@@ -1,87 +1,112 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Calendar as CalendarIcon, MapPin, Clock, Filter, Image as ImageIcon } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
+import SectionTitle from '../components/SectionTitle';
 import axios from 'axios';
-import RidgeDivider from '../components/RidgeDivider';
 
-const SAMPLE_EVENTS = [
-  { title: 'Sahyadri Cultural Fest 2025', date: '2025-09-15', category: 'cultural', location: 'School Amphitheatre', isUpcoming: true, description: 'Annual extravaganza of music, dance, drama, and art representing the cultural heritage of the Western Ghats.' },
-  { title: 'Science Olympiad', date: '2025-10-10', category: 'academic', location: 'Science Block', isUpcoming: true, description: 'Inter-school science competition for Grades 6–10. Register your team today!' },
-  { title: 'Annual Sports Meet', date: '2025-11-22', category: 'sports', location: 'Athletic Track', isUpcoming: true, description: '3-day sports festival with track & field, swimming, team sports and an exciting prize ceremony.' },
-  { title: 'Raigad Heritage Day', date: '2025-08-30', category: 'cultural', location: 'Main Hall', isUpcoming: false, description: 'A celebration of Chhatrapati Shivaji Maharaj\'s legacy, featuring student performances and a fort-model exhibition.' },
-  { title: 'Career Guidance Workshop', date: '2025-07-20', category: 'academic', location: 'Auditorium', isUpcoming: false, description: 'Alumni and industry professionals guided Grade 10–12 students on career options and entrance exams.' },
-  { title: 'Monsoon Nature Trek', date: '2025-07-08', category: 'activities', location: 'Sahyadri Foothills', isUpcoming: false, description: 'Eco Rangers led a guided monsoon trek through the biodiversity hotspot behind campus.' },
-];
-
-const CAT_COLORS = { cultural: 'badge-maroon', academic: 'badge-indigo', sports: 'badge-green', activities: 'badge-gold' };
-
-export default function Events() {
-  const [events, setEvents] = useState(SAMPLE_EVENTS);
+const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [filter, setFilter] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/events')
-      .then(({ data }) => { if (data.length) setEvents(data); })
-      .catch(() => {});
+    const fetchEvents = async () => {
+      try {
+        // Fallback mock data in case API is not seeded
+        const mockEvents = [
+          { _id: '1', title: 'Annual Sports Day', date: new Date(Date.now() + 86400000 * 5).toISOString(), category: 'sports', venue: 'Main Playground', isUpcoming: true, description: 'Inter-house athletic competitions and track events.' },
+          { _id: '2', title: 'Science Fair 2026', date: new Date(Date.now() + 86400000 * 12).toISOString(), category: 'science-fair', venue: 'Science Block', isUpcoming: true, description: 'Innovative projects by middle and high school students.' },
+          { _id: '3', title: 'Cultural Fest', date: new Date(Date.now() - 86400000 * 30).toISOString(), category: 'festivals', venue: 'Auditorium', isUpcoming: false, description: 'A celebration of diversity through dance and music.' },
+        ];
+
+        try {
+          const res = await axios.get('http://localhost:5000/api/events');
+          if (res.data.success && res.data.data.length > 0) {
+            setEvents(res.data.data);
+          } else {
+            setEvents(mockEvents);
+          }
+        } catch (e) {
+          setEvents(mockEvents);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEvents();
   }, []);
 
-  const upcoming = events.filter((e) => e.isUpcoming);
-  const past     = events.filter((e) => !e.isUpcoming);
+  const categories = [
+    { id: 'all', name: 'All Events' },
+    { id: 'sports', name: 'Sports' },
+    { id: 'science-fair', name: 'Science' },
+    { id: 'festivals', name: 'Festivals' },
+  ];
 
-  const EventCard = ({ e }) => (
-    <div className="card reveal" id={`event-${e.title.replace(/\s+/g,'-').toLowerCase().slice(0,20)}`}>
-      <div style={{ height: 6, background: `linear-gradient(90deg, var(--${e.category === 'cultural' ? 'maroon' : e.category === 'academic' ? 'indigo' : e.category === 'sports' ? 'green' : 'gold'}), transparent)` }} />
-      <div className="card-body">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.4rem', marginBottom: 'var(--sp-sm)' }}>
-          <span className={`badge ${CAT_COLORS[e.category] || 'badge-gold'}`}>{e.category}</span>
-          <span style={{ fontSize: 'var(--fs-xs)', color: 'var(--text-muted)' }}>
-            📅 {new Date(e.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
-          </span>
-        </div>
-        <h4 style={{ fontSize: 'var(--fs-lg)' }}>{e.title}</h4>
-        <div style={{ fontSize: 'var(--fs-xs)', color: 'var(--gold-d)', fontWeight: 600, marginBottom: 'var(--sp-sm)' }}>📍 {e.location}</div>
-        <p style={{ fontSize: 'var(--fs-sm)' }}>{e.description}</p>
-      </div>
-    </div>
-  );
+  const filteredEvents = filter === 'all' ? events : events.filter(e => e.category === filter);
 
   return (
-    <main>
-      <title>Events | Raigad International School</title>
-      <section className="page-hero">
-        <div className="container">
-          <span className="overline" style={{ color: 'var(--gold-l)' }}>School Events</span>
-          <h1>Where Life Happens Beyond Textbooks</h1>
-          <p>Festivals, competitions, treks and workshops — there's always something exciting at RIS.</p>
-        </div>
-      </section>
-      <RidgeDivider flip bg="var(--sand)" />
+    <div className="w-full pt-10 pb-20 bg-brand-light">
+      <SectionTitle title="Events & Gallery" subtitle="Discover the vibrant life at Raigad School." icon={CalendarIcon} color="brand-coral" />
 
-      <section className="section bg-sand">
-        <div className="container">
-          {upcoming.length > 0 && (
-            <>
-              <div className="section-heading" style={{ textAlign: 'left', marginBottom: 'var(--sp-lg)' }}>
-                <span className="overline">Upcoming Events</span>
-                <h2>Don't Miss Out</h2>
-                <span className="gold-line" />
-              </div>
-              <div className="grid-3" style={{ marginBottom: 'var(--sp-2xl)' }}>
-                {upcoming.map((e, i) => <EventCard key={i} e={e} />)}
-              </div>
-            </>
-          )}
+      {/* Filters */}
+      <div className="max-w-6xl mx-auto px-4 mt-8 mb-12 flex flex-wrap justify-center gap-3">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => setFilter(cat.id)}
+            className={`px-6 py-2 rounded-full font-bold transition-all ${
+              filter === cat.id 
+                ? 'bg-brand-dark text-white shadow-[0_4px_0_#1a252f]' 
+                : 'bg-white text-gray-600 border-2 border-gray-200 hover:border-brand-dark hover:text-brand-dark'
+            }`}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
 
-          <RidgeDivider bg="var(--sand-d)" />
-          <div style={{ background: 'var(--sand-d)', padding: 'var(--sp-xl) 0', borderRadius: 'var(--r-lg)', marginTop: 'var(--sp-lg)' }}>
-            <div className="section-heading" style={{ textAlign: 'left' }}>
-              <span className="overline">Past Events</span>
-              <h2>Memory Lane</h2>
-              <span className="gold-line" />
-            </div>
-            <div className="grid-3">
-              {past.map((e, i) => <EventCard key={i} e={e} />)}
-            </div>
-          </div>
-        </div>
+      {/* Events Grid */}
+      <section className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {loading ? (
+          <div className="col-span-full text-center py-12 text-gray-500 font-bold">Loading events...</div>
+        ) : (
+          filteredEvents.map((event, idx) => (
+            <AnimatedSection key={event._id} delay={idx * 0.1}>
+              <div className="clay-card h-full flex flex-col group p-6">
+                <div className={`w-full h-40 rounded-2xl mb-6 flex items-center justify-center bg-gray-100 relative overflow-hidden`}>
+                  {event.image ? (
+                    <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <ImageIcon size={48} className="text-gray-300" />
+                  )}
+                  {event.isUpcoming && (
+                    <div className="absolute top-4 right-4 bg-brand-yellow text-brand-dark text-xs font-black px-3 py-1 rounded-full shadow-lg">
+                      UPCOMING
+                    </div>
+                  )}
+                </div>
+                
+                <h3 className="text-xl font-black text-brand-dark mb-2">{event.title}</h3>
+                <p className="text-gray-600 text-sm font-medium mb-4 flex-grow">{event.description}</p>
+                
+                <div className="space-y-2 mt-auto pt-4 border-t-2 border-gray-100">
+                  <div className="flex items-center text-sm font-bold text-gray-500">
+                    <CalendarIcon size={16} className="mr-2 text-brand-blue" />
+                    {new Date(event.date).toLocaleDateString(undefined, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}
+                  </div>
+                  <div className="flex items-center text-sm font-bold text-gray-500">
+                    <MapPin size={16} className="mr-2 text-brand-coral" />
+                    {event.venue || 'TBA'}
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))
+        )}
       </section>
-    </main>
+    </div>
   );
-}
+};
+
+export default Events;

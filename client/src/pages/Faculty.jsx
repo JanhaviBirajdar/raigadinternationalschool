@@ -1,114 +1,104 @@
-import RidgeDivider from '../components/RidgeDivider';
+import React, { useState } from 'react';
+import { Users, Mail, Star, Award } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
+import SectionTitle from '../components/SectionTitle';
 
-const DEPARTMENTS = [
-  {
-    dept: 'Leadership',
-    members: [
-      { name: 'Dr. Sunita Patil',    role: 'Principal',               qual: 'Ph.D. Education, TISS', exp: '25 yrs', emoji: '👩‍💼' },
-      { name: 'Mr. Arun Khedkar',   role: 'Vice Principal',           qual: 'M.Ed., B.Sc.', exp: '18 yrs', emoji: '👨‍💼' },
-      { name: 'Ms. Priya Naik',     role: 'Head of Student Welfare',  qual: 'M.A. Psychology', exp: '14 yrs', emoji: '👩‍🏫' },
-    ],
-  },
-  {
-    dept: 'Science',
-    members: [
-      { name: 'Mr. Ravi Kulkarni',  role: 'HOD Science / Physics',   qual: 'M.Sc. Physics', exp: '16 yrs', emoji: '👨‍🔬' },
-      { name: 'Ms. Anita More',     role: 'Chemistry',                qual: 'M.Sc. Chemistry', exp: '11 yrs', emoji: '👩‍🔬' },
-      { name: 'Dr. Seema Ghorpade', role: 'Biology',                  qual: 'Ph.D. Botany', exp: '9 yrs', emoji: '🌿' },
-    ],
-  },
-  {
-    dept: 'Mathematics',
-    members: [
-      { name: 'Mr. Nilesh Shinde',  role: 'HOD Mathematics',         qual: 'M.Sc. Maths', exp: '20 yrs', emoji: '🔢' },
-      { name: 'Ms. Kavitha Rao',    role: 'Mathematics',              qual: 'B.Ed., M.Sc.', exp: '8 yrs', emoji: '📐' },
-    ],
-  },
-  {
-    dept: 'Languages',
-    members: [
-      { name: 'Ms. Sneha Sawant',   role: 'HOD English',             qual: 'M.A. English', exp: '13 yrs', emoji: '📖' },
-      { name: 'Mr. Vikas Pawar',    role: 'Marathi & Hindi',         qual: 'M.A. Marathi', exp: '10 yrs', emoji: '📝' },
-    ],
-  },
-  {
-    dept: 'Social Studies',
-    members: [
-      { name: 'Ms. Meena Jadhav',   role: 'History & Civics',        qual: 'M.A. History', exp: '12 yrs', emoji: '🏛️' },
-      { name: 'Mr. Suresh Kamble',  role: 'Geography',               qual: 'M.A. Geography', exp: '7 yrs', emoji: '🗺️' },
-    ],
-  },
-  {
-    dept: 'Commerce & Economics',
-    members: [
-      { name: 'Ms. Dipti Gokhale',  role: 'HOD Commerce',            qual: 'M.Com, B.Ed.', exp: '15 yrs', emoji: '📊' },
-      { name: 'Mr. Amol Thakur',    role: 'Economics',               qual: 'M.A. Economics', exp: '9 yrs', emoji: '💹' },
-    ],
-  },
-  {
-    dept: 'Co-Curricular',
-    members: [
-      { name: 'Ms. Radha Varma',    role: 'Music & Dance',           qual: 'Diploma Bharatanatyam', exp: '11 yrs', emoji: '🎵' },
-      { name: 'Mr. Sameer Desai',   role: 'Physical Education',      qual: 'B.P.Ed.', exp: '8 yrs', emoji: '⚽' },
-      { name: 'Ms. Priti Chavan',   role: 'Art & Craft',             qual: 'BFA, JJSA', exp: '10 yrs', emoji: '🎨' },
-    ],
-  },
-];
+const Faculty = () => {
+  const [filter, setFilter] = useState('all');
 
-export default function Faculty() {
+  const departments = [
+    { id: 'all', name: 'All Departments' },
+    { id: 'science', name: 'Science & Math' },
+    { id: 'arts', name: 'Arts & Humanities' },
+    { id: 'sports', name: 'Physical Education' },
+  ];
+
+  const staff = [
+    { id: 1, name: 'Dr. Sarah Jenkins', role: 'Principal', dept: 'admin', exp: '20+ Yrs', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop' },
+    { id: 2, name: 'Mr. Robert Chen', role: 'Head of Science', dept: 'science', exp: '15 Yrs', image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=400&auto=format&fit=crop' },
+    { id: 3, name: 'Ms. Emily Davis', role: 'Math Teacher', dept: 'science', exp: '8 Yrs', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop' },
+    { id: 4, name: 'Mr. David Smith', role: 'History Teacher', dept: 'arts', exp: '12 Yrs', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
+    { id: 5, name: 'Ms. Anita Patel', role: 'Art Director', dept: 'arts', exp: '10 Yrs', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1bfa82?q=80&w=400&auto=format&fit=crop' },
+    { id: 6, name: 'Coach Marcus', role: 'Head Coach', dept: 'sports', exp: '18 Yrs', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop' },
+  ];
+
+  const filteredStaff = filter === 'all' ? staff.filter(s => s.dept !== 'admin') : staff.filter(s => s.dept === filter);
+
   return (
-    <main>
-      <title>Faculty | Raigad International School</title>
-      <section className="page-hero">
-        <div className="container">
-          <span className="overline" style={{ color: 'var(--gold-l)' }}>Our Faculty</span>
-          <h1>Mentors Who Inspire</h1>
-          <p>80+ qualified educators committed to drawing out the best in every student.</p>
-        </div>
-      </section>
-      <RidgeDivider flip bg="var(--sand)" />
+    <div className="w-full pt-10 pb-20 bg-brand-light">
+      <SectionTitle title="Faculty & Staff" subtitle="Meet the brilliant minds shaping our future leaders." icon={Users} color="brand-green" />
 
-      {DEPARTMENTS.map((dept, di) => (
-        <section
-          key={dept.dept}
-          className="section-sm"
-          style={{ background: di % 2 === 0 ? 'var(--sand)' : 'var(--sand-d)' }}
-          id={`dept-${dept.dept.toLowerCase()}`}
-        >
-          <div className="container">
-            <div style={{ marginBottom: 'var(--sp-lg)' }}>
-              <span className="overline">Department</span>
-              <h2>{dept.dept}</h2>
-              <span className="gold-line" />
+      {/* Teacher of the Month */}
+      <section className="max-w-4xl mx-auto px-4 mt-12 mb-16">
+        <AnimatedSection className="relative bg-gradient-to-br from-brand-yellow to-brand-coral rounded-[40px] p-2 shadow-2xl">
+          <div className="bg-white rounded-[32px] p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-brand-yellow text-brand-dark px-6 py-2 rounded-bl-3xl font-black flex items-center gap-2">
+              <Star size={16} className="fill-brand-dark" />
+              Teacher of the Month
             </div>
-            <div className="grid-3">
-              {dept.members.map((m) => (
-                <div key={m.name} className="card reveal" style={{ textAlign: 'center' }} id={`faculty-${m.name.replace(/\s+/g,'-').toLowerCase()}`}>
-                  <div className="card-body">
-                    <div style={{ fontSize: '3rem', marginBottom: 'var(--sp-sm)' }}>{m.emoji}</div>
-                    <h4 style={{ fontSize: 'var(--fs-lg)' }}>{m.name}</h4>
-                    <span className="badge badge-maroon" style={{ marginBottom: 'var(--sp-sm)' }}>{m.role}</span>
-                    <span className="gold-line gold-line-center" />
-                    <p style={{ fontSize: 'var(--fs-xs)', margin: '0 0 var(--sp-xs)' }}>🎓 {m.qual}</p>
-                    <p style={{ fontSize: 'var(--fs-xs)', margin: 0 }}>⏱ {m.exp} experience</p>
-                  </div>
+            
+            <div className="w-48 h-48 rounded-full overflow-hidden border-8 border-brand-yellow/20 shrink-0">
+              <img src={staff[1].image} alt={staff[1].name} className="w-full h-full object-cover" />
+            </div>
+            
+            <div>
+              <h2 className="text-3xl font-black text-brand-dark mb-2">{staff[1].name}</h2>
+              <p className="text-brand-blue font-bold text-lg mb-4">{staff[1].role}</p>
+              <p className="text-gray-600 font-medium italic mb-6">
+                "For exceptional dedication to making physics fun and accessible through interactive robotics projects."
+              </p>
+              <div className="flex gap-4">
+                <div className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full text-sm font-bold text-gray-600">
+                  <Award size={16} className="text-brand-coral" /> Innovation Award
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-        </section>
-      ))}
-
-      <section className="section bg-sand" style={{ textAlign: 'center' }}>
-        <div className="container">
-          <h2>Join Our Teaching Team</h2>
-          <span className="gold-line gold-line-center" />
-          <p style={{ maxWidth: 500, margin: '0 auto var(--sp-lg)' }}>
-            We are always looking for passionate, qualified educators to join the RIS family. Send your CV to{' '}
-            <a href="mailto:careers@raigadschool.edu.in" style={{ color: 'var(--maroon)', fontWeight: 600 }}>careers@raigadschool.edu.in</a>
-          </p>
-        </div>
+        </AnimatedSection>
       </section>
-    </main>
+
+      {/* Filters */}
+      <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-3 mb-12">
+        {departments.map((dept) => (
+          <button
+            key={dept.id}
+            onClick={() => setFilter(dept.id)}
+            className={`px-6 py-2 rounded-full font-bold transition-all ${
+              filter === dept.id 
+                ? 'bg-brand-dark text-white shadow-[0_4px_0_#1a252f]' 
+                : 'bg-white text-gray-600 border-2 border-gray-200 hover:border-brand-dark hover:text-brand-dark'
+            }`}
+          >
+            {dept.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Staff Grid */}
+      <section className="max-w-7xl mx-auto px-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredStaff.map((person, idx) => (
+          <AnimatedSection key={person.id} delay={idx * 0.1}>
+            <div className="clay-card flex flex-col items-center text-center p-8 group">
+              <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-gray-100 group-hover:border-brand-blue transition-colors">
+                <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+              </div>
+              <h3 className="text-xl font-black text-brand-dark">{person.name}</h3>
+              <p className="text-gray-500 font-bold mb-4">{person.role}</p>
+              
+              <div className="w-full border-t-2 border-gray-100 pt-4 mt-auto flex justify-between items-center">
+                <span className="text-sm font-bold text-brand-green bg-brand-green/10 px-3 py-1 rounded-full">
+                  {person.exp}
+                </span>
+                <button className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-brand-blue hover:text-white transition-colors">
+                  <Mail size={18} />
+                </button>
+              </div>
+            </div>
+          </AnimatedSection>
+        ))}
+      </section>
+    </div>
   );
-}
+};
+
+export default Faculty;

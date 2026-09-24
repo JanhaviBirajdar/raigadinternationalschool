@@ -1,126 +1,167 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Send, CheckCircle2 } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
+import SectionTitle from '../components/SectionTitle';
 import axios from 'axios';
-import RidgeDivider from '../components/RidgeDivider';
 
-export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
-  const [status, setStatus] = useState(null);
-  const [loading, setLoading] = useState(false);
+const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const submit = async (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setStatus('loading');
     try {
-      await axios.post('/api/enquiry', form);
-      setStatus('success');
-      setForm({ name: '', email: '', phone: '', message: '' });
-    } catch { setStatus('error'); }
-    finally { setLoading(false); }
+      // Sending to local backend
+      const res = await axios.post('http://localhost:5000/api/contact', formData);
+      if (res.data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (err) {
+      setStatus('error');
+      setErrorMessage(err.response?.data?.message || 'Failed to send message. Please try again.');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
-    <main>
-      <title>Contact Us | Raigad International School</title>
-      <section className="page-hero">
-        <div className="container">
-          <span className="overline" style={{ color: 'var(--gold-l)' }}>Get in Touch</span>
-          <h1>We'd Love to Hear From You</h1>
-          <p>Admissions, tours, partnerships — our team is here Monday to Saturday.</p>
-        </div>
-      </section>
-      <RidgeDivider flip bg="var(--sand)" />
+    <div className="w-full pt-10 pb-20 bg-brand-light">
+      <SectionTitle title="Contact Us" subtitle="We'd love to hear from you! Reach out for admissions or inquiries." icon={Mail} color="brand-green" />
 
-      <section className="section bg-sand">
-        <div className="container">
-          <div className="grid-2" style={{ gap: 'var(--sp-2xl)', alignItems: 'start' }}>
-            {/* Contact info */}
-            <div>
-              <span className="overline">Contact Details</span>
-              <h2>Find Us</h2>
-              <span className="gold-line" />
-
-              {[
-                { icon: '📍', label: 'Address', val: 'Near Raigad Fort Road, Panvel, Raigad District, Maharashtra 410206' },
-                { icon: '📞', label: 'Phone', val: '+91 90000 00000', href: 'tel:+919000000000' },
-                { icon: '✉️', label: 'Email', val: 'info@raigadschool.edu.in', href: 'mailto:info@raigadschool.edu.in' },
-                { icon: '⏰', label: 'Office Hours', val: 'Mon–Fri 9:00 AM – 4:00 PM | Sat 9:00 AM – 1:00 PM' },
-              ].map((c) => (
-                <div key={c.label} style={{ display: 'flex', gap: 'var(--sp-md)', marginBottom: 'var(--sp-lg)', alignItems: 'flex-start' }}>
-                  <div style={{ width: 46, height: 46, borderRadius: 'var(--r-md)', background: 'linear-gradient(135deg, var(--gold), var(--gold-d))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0, boxShadow: 'var(--shadow-gold)' }}>
-                    {c.icon}
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: 700, color: 'var(--maroon)', fontSize: 'var(--fs-sm)', marginBottom: 4 }}>{c.label}</div>
-                    {c.href
-                      ? <a href={c.href} style={{ color: 'var(--text-muted)', fontSize: 'var(--fs-sm)' }}>{c.val}</a>
-                      : <div style={{ color: 'var(--text-muted)', fontSize: 'var(--fs-sm)' }}>{c.val}</div>
-                    }
-                  </div>
+      <div className="max-w-7xl mx-auto px-4 mt-12 grid lg:grid-cols-2 gap-12">
+        {/* Contact Info & Map */}
+        <div className="space-y-8">
+          <AnimatedSection delay={0.1}>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {/* Call Us */}
+              <div className="clay-card flex flex-col items-center text-center p-8 group hover:-translate-y-2">
+                <div className="w-16 h-16 rounded-full bg-brand-yellow/20 text-brand-yellow flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Phone size={32} />
                 </div>
-              ))}
+                <h3 className="text-xl font-bold text-brand-dark mb-2">Call Us</h3>
+                <p className="text-gray-600 font-medium">+1 234 567 890</p>
+                <p className="text-gray-600 font-medium">+1 098 765 432</p>
+              </div>
 
-              {/* Map embed */}
-              <div style={{ borderRadius: 'var(--r-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', border: '2px solid rgba(90,58,48,0.15)', marginTop: 'var(--sp-md)' }}>
-                <iframe
-                  title="Raigad International School Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30288.19!2d73.11!3d18.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e8b4b5555555%3A0x1111111111111111!2sPanvel%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1623000000000!5m2!1sen!2sin"
-                  width="100%"
-                  height="260"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+              {/* Email Us */}
+              <div className="clay-card flex flex-col items-center text-center p-8 group hover:-translate-y-2">
+                <div className="w-16 h-16 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Mail size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-brand-dark mb-2">Email Us</h3>
+                <p className="text-gray-600 font-medium">hello@raigadschool.edu</p>
+                <p className="text-gray-600 font-medium">admissions@raigad.edu</p>
               </div>
             </div>
+          </AnimatedSection>
 
-            {/* Contact form */}
-            <div>
-              <span className="overline">Send a Message</span>
-              <h2>Write to Us</h2>
-              <span className="gold-line" />
-
-              {status === 'success' && (
-                <div style={{ background: 'var(--primary-light)', border: '1px solid var(--primary)', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: 'var(--primary-dark)' }}>
-                  ✅ Message received! We'll respond within 1 business day.
-                </div>
-              )}
-              {status === 'error' && (
-                <div style={{ background: 'var(--maroon-l)', border: '1px solid var(--maroon)', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: 'var(--maroon-d)' }}>
-                  ❌ Failed to send. Please email us directly.
-                </div>
-              )}
-
-              <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-md)' }}>
-                <div className="grid-2" style={{ gap: 'var(--sp-md)' }}>
-                  <div className="form-group">
-                    <label htmlFor="ct-name">Your Name *</label>
-                    <input id="ct-name" name="name" value={form.name} onChange={handle} required placeholder="Full name" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="ct-phone">Phone</label>
-                    <input id="ct-phone" name="phone" value={form.phone} onChange={handle} placeholder="+91 XXXXX XXXXX" />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="ct-email">Email *</label>
-                  <input id="ct-email" name="email" type="email" value={form.email} onChange={handle} required placeholder="your@email.com" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="ct-msg">Message *</label>
-                  <textarea id="ct-msg" name="message" value={form.message} onChange={handle} required placeholder="How can we help you?" rows={5} />
-                </div>
-                <button type="submit" id="contact-submit-btn" className="btn btn-primary" disabled={loading} style={{ alignSelf: 'flex-start' }}>
-                  {loading ? 'Sending…' : 'Send Message'}
-                </button>
-              </form>
-            </div>
-          </div>
+          <AnimatedSection delay={0.2} className="clay-card p-2 md:p-4 h-[400px]">
+            <iframe
+              title="School Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115132.86107231454!2d73.1818!3d18.5204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0, borderRadius: '24px' }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </AnimatedSection>
         </div>
-      </section>
 
-      <style>{`@media(max-width:700px){.container .grid-2[style]{grid-template-columns:1fr!important;}}`}</style>
-    </main>
+        {/* Contact Form */}
+        <AnimatedSection delay={0.3} className="clay-card p-8 md:p-12 h-fit">
+          <h2 className="text-3xl font-black text-brand-dark mb-8">Send us a message</h2>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-brand-dark font-bold mb-2">Your Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-brand-blue focus:outline-none transition-colors font-medium"
+                placeholder="John Doe"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-brand-dark font-bold mb-2">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-brand-blue focus:outline-none transition-colors font-medium"
+                placeholder="john@example.com"
+              />
+            </div>
+
+            <div>
+              <label className="block text-brand-dark font-bold mb-2">Subject</label>
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-brand-blue focus:outline-none transition-colors font-medium"
+                placeholder="Admission Inquiry"
+              />
+            </div>
+
+            <div>
+              <label className="block text-brand-dark font-bold mb-2">Message</label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows="4"
+                className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-brand-blue focus:outline-none transition-colors font-medium resize-none"
+                placeholder="How can we help you?"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="clay-button w-full bg-brand-blue text-white flex items-center justify-center gap-2 text-lg disabled:opacity-70"
+            >
+              {status === 'loading' ? 'Sending...' : (
+                <>
+                  <Send size={20} />
+                  Send Message
+                </>
+              )}
+            </button>
+
+            {status === 'success' && (
+              <div className="p-4 bg-green-100 text-green-700 rounded-2xl flex items-center gap-2 font-bold animate-pulse">
+                <CheckCircle2 size={24} />
+                Message sent successfully!
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="p-4 bg-red-100 text-red-700 rounded-2xl font-bold">
+                {errorMessage}
+              </div>
+            )}
+          </form>
+        </AnimatedSection>
+      </div>
+    </div>
   );
-}
+};
+
+export default Contact;

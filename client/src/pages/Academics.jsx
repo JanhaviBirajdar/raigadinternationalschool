@@ -1,140 +1,142 @@
-import { Link } from 'react-router-dom';
-import RidgeDivider from '../components/RidgeDivider';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { GraduationCap, Book, Beaker, Code, Palette, ChevronDown } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
+import SectionTitle from '../components/SectionTitle';
 
-const STREAMS = [
-  {
-    name: 'Science',
-    icon: '🔬',
-    subjects: ['Physics', 'Chemistry', 'Biology / Mathematics', 'English', 'Computer Science'],
-    career: 'Medicine, Engineering, Research, Technology',
-  },
-  {
-    name: 'Commerce',
-    icon: '📊',
-    subjects: ['Accountancy', 'Business Studies', 'Economics', 'English', 'Mathematics / IP'],
-    career: 'CA, MBA, Finance, Entrepreneurship',
-  },
-  {
-    name: 'Humanities',
-    icon: '📚',
-    subjects: ['History', 'Political Science', 'Geography', 'English', 'Psychology / Sociology'],
-    career: 'Law, Civil Services, Media, Education',
-  },
-];
+const Academics = () => {
+  const [activeTab, setActiveTab] = useState('kindergarten');
+  const [activeSubject, setActiveSubject] = useState(null);
 
-const PROGRAMS = [
-  { icon: '🌱', label: 'Pre-Primary', grades: 'Nursery – KG 2', approach: 'Play-based, Montessori-inspired' },
-  { icon: '📖', label: 'Primary',     grades: 'Grades 1 – 5',   approach: 'Activity-led CBSE curriculum' },
-  { icon: '🔭', label: 'Middle',      grades: 'Grades 6 – 8',   approach: 'Project & inquiry based' },
-  { icon: '🏆', label: 'Secondary',   grades: 'Grades 9 – 10',  approach: 'Board excellence & skill dev' },
-  { icon: '🎓', label: 'Sr. Secondary', grades: 'Grades 11 – 12', approach: '3 streams, career counselling' },
-];
+  const tabs = [
+    { id: 'kindergarten', name: 'Kindergarten', color: 'brand-yellow', icon: Palette },
+    { id: 'primary', name: 'Primary (1-5)', color: 'brand-blue', icon: Book },
+    { id: 'middle', name: 'Middle (6-8)', color: 'brand-green', icon: Beaker },
+    { id: 'high', name: 'High School', color: 'brand-coral', icon: Code },
+  ];
 
-const EXTRAS = [
-  'Robotics & AI Club', 'Eco Rangers (Nature Club)', 'Literary Society',
-  'Music & Dance Academy', 'Community Service Corps', 'Model United Nations',
-  'Film & Photography Club', 'Math Olympiad Training',
-];
+  const curriculum = {
+    kindergarten: {
+      desc: "A playful environment focused on foundational skills, motor development, and social interaction.",
+      subjects: [
+        { title: 'Language Arts', details: 'Phonics, storytelling, basic vocabulary, and pre-reading skills.' },
+        { title: 'Numbers & Logic', details: 'Counting, basic shapes, patterns, and simple puzzles.' },
+        { title: 'Creative Arts', details: 'Finger painting, clay modeling, singing, and dancing.' },
+      ]
+    },
+    primary: {
+      desc: "Building a strong academic foundation while encouraging curiosity and independent thinking.",
+      subjects: [
+        { title: 'Mathematics', details: 'Arithmetic, fractions, geometry basics, and word problems.' },
+        { title: 'Science', details: 'Environmental studies, basic physics, plants, and animals.' },
+        { title: 'Languages', details: 'English literature, grammar, and introduction to a second language.' },
+      ]
+    },
+    middle: {
+      desc: "Transitioning to more complex concepts, critical thinking, and collaborative projects.",
+      subjects: [
+        { title: 'Advanced Science', details: 'Chemistry experiments, biology, and earth sciences.' },
+        { title: 'Social Studies', details: 'World history, geography, civics, and global awareness.' },
+        { title: 'Computer Science', details: 'Basic programming, digital literacy, and internet safety.' },
+      ]
+    },
+    high: {
+      desc: "Preparing for higher education with specialized tracks, advanced placements, and career guidance.",
+      subjects: [
+        { title: 'STEM Track', details: 'Calculus, Physics, Chemistry, and Advanced Computer Science.' },
+        { title: 'Commerce & Arts', details: 'Economics, Business Studies, History, and Psychology.' },
+        { title: 'Life Skills', details: 'Financial literacy, leadership, and communication skills.' },
+      ]
+    }
+  };
 
-export default function Academics() {
   return (
-    <main>
-      <title>Academics | Raigad International School</title>
-      <section className="page-hero">
-        <div className="container">
-          <span className="overline" style={{ color: 'var(--gold-l)' }}>Academics</span>
-          <h1>A Curriculum Built for Tomorrow</h1>
-          <p>CBSE rigour enriched with inquiry, creativity and the great Sahyadri outdoors.</p>
-        </div>
-      </section>
-      <RidgeDivider flip bg="var(--sand)" />
+    <div className="w-full pt-10 pb-20 bg-brand-light">
+      <SectionTitle title="Academics" subtitle="A comprehensive curriculum designed for every stage of growth." icon={GraduationCap} color="brand-blue" />
 
-      {/* Programmes */}
-      <section className="section bg-sand">
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline">Programmes</span>
-            <h2>Learning at Every Stage</h2>
-            <span className="gold-line gold-line-center" />
-          </div>
-          <div className="grid-3" style={{ gridTemplateColumns: 'repeat(5,1fr)', gap: 'var(--sp-md)' }}>
-            {PROGRAMS.map((p) => (
-              <div key={p.label} className="card reveal" style={{ textAlign: 'center' }}>
-                <div className="card-body">
-                  <div style={{ fontSize: '2.2rem', marginBottom: 'var(--sp-sm)' }}>{p.icon}</div>
-                  <h4 style={{ fontSize: 'var(--fs-base)' }}>{p.label}</h4>
-                  <span className="badge badge-gold" style={{ margin: '0.4rem 0 0.6rem' }}>{p.grades}</span>
-                  <p style={{ fontSize: 'var(--fs-xs)', margin: 0 }}>{p.approach}</p>
-                </div>
+      {/* Grade Tabs */}
+      <section className="max-w-6xl mx-auto px-4 mt-8">
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => { setActiveTab(tab.id); setActiveSubject(null); }}
+                className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all duration-300 ${
+                  isActive 
+                    ? `bg-${tab.color} text-white shadow-[0_4px_0_#cbd5e1] -translate-y-1` 
+                    : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-100'
+                }`}
+              >
+                <tab.icon size={20} />
+                {tab.name}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Tab Content */}
+        <AnimatedSection className="clay-card p-8 md:p-12 min-h-[400px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-8"
+            >
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <h3 className="text-3xl font-black text-brand-dark mb-4">
+                  {tabs.find(t => t.id === activeTab)?.name} Curriculum
+                </h3>
+                <p className="text-lg text-gray-600 font-medium">
+                  {curriculum[activeTab].desc}
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Senior streams */}
-      <RidgeDivider bg="var(--maroon)" />
-      <section className="section bg-maroon">
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline" style={{ color: 'var(--gold-l)' }}>Senior Secondary</span>
-            <h2 style={{ color: 'var(--white)' }}>Choose Your Stream</h2>
-            <span className="gold-line gold-line-center" />
-            <p style={{ color: 'rgba(247,244,236,0.75)' }}>Grades 11 & 12 offer three CBSE streams, each with dedicated mentors and career counselling.</p>
-          </div>
-          <div className="grid-3">
-            {STREAMS.map((s) => (
-              <div key={s.name} className="card reveal">
-                <div className="card-body">
-                  <div style={{ fontSize: '2.5rem', marginBottom: 'var(--sp-sm)' }}>{s.icon}</div>
-                  <h3>{s.name}</h3>
-                  <span className="gold-line" />
-                  <ul style={{ color: 'var(--text-muted)', listStyle: 'disc', paddingLeft: '1.2rem', marginBottom: 'var(--sp-md)' }}>
-                    {s.subjects.map((sub) => <li key={sub}>{sub}</li>)}
-                  </ul>
-                  <span className="badge badge-green">🎯 {s.career}</span>
-                </div>
+              {/* Accordion */}
+              <div className="space-y-4 max-w-4xl mx-auto">
+                {curriculum[activeTab].subjects.map((subject, idx) => {
+                  const isOpen = activeSubject === idx;
+                  const activeColor = tabs.find(t => t.id === activeTab)?.color;
+                  return (
+                    <div key={idx} className="border-2 border-gray-100 rounded-2xl overflow-hidden bg-white transition-colors hover:border-gray-200">
+                      <button
+                        onClick={() => setActiveSubject(isOpen ? null : idx)}
+                        className="w-full px-6 py-4 flex justify-between items-center text-left"
+                      >
+                        <span className="font-bold text-lg text-brand-dark">{subject.title}</span>
+                        <ChevronDown 
+                          size={20} 
+                          className={`text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden bg-gray-50"
+                          >
+                            <div className={`px-6 py-4 border-l-4 border-${activeColor} text-gray-600 font-medium leading-relaxed`}>
+                              {subject.details}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-        </div>
+            </motion.div>
+          </AnimatePresence>
+        </AnimatedSection>
       </section>
-      <RidgeDivider flip bg="var(--sand)" />
-
-      {/* Extra-curricular */}
-      <section className="section bg-sand">
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline">Beyond the Classroom</span>
-            <h2>Clubs & Activities</h2>
-            <span className="gold-line gold-line-center" />
-            <p>Because education is bigger than textbooks — our clubs build leadership, creativity and joy.</p>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-sm)', justifyContent: 'center' }}>
-            {EXTRAS.map((e) => (
-              <span key={e} className="badge badge-maroon" style={{ fontSize: 'var(--fs-sm)', padding: '0.45rem 1rem' }}>{e}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section bg-sand" style={{ paddingTop: 0, textAlign: 'center' }}>
-        <div className="container">
-          <h3>Have questions about our curriculum?</h3>
-          <span className="gold-line gold-line-center" />
-          <p style={{ maxWidth: 480, margin: '0 auto var(--sp-lg)' }}>Our academic counsellors are happy to walk you through the programme best suited for your child.</p>
-          <Link to="/contact" className="btn btn-primary" id="academics-contact-btn">Talk to a Counsellor</Link>
-        </div>
-      </section>
-
-      <style>{`
-        @media(max-width:900px){
-          .section .grid-3[style] { grid-template-columns: repeat(2,1fr) !important; }
-        }
-        @media(max-width:600px){
-          .section .grid-3[style] { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-    </main>
+    </div>
   );
-}
+};
+
+export default Academics;

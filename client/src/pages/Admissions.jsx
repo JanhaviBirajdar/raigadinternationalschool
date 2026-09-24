@@ -1,193 +1,195 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { UserPlus, Calendar, FileText, CheckCircle2, ChevronRight } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
+import SectionTitle from '../components/SectionTitle';
 import axios from 'axios';
-import RidgeDivider from '../components/RidgeDivider';
 
-const STEPS = [
-  { icon: '📋', title: 'Registration', desc: 'Fill in the online enquiry form or visit the school office.' },
-  { icon: '📝', title: 'Application', desc: 'Submit the completed application with required documents.' },
-  { icon: '🗣️', title: 'Interaction', desc: 'Attend a brief parent-student interaction with our counsellors.' },
-  { icon: '📣', title: 'Admission', desc: 'Receive your offer letter and complete fee payment to confirm.' },
-];
+const Admissions = () => {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    studentName: '', dob: '', grade: '',
+    parentName: '', parentEmail: '', parentPhone: '',
+    address: '', previousSchool: ''
+  });
+  const [status, setStatus] = useState('idle');
 
-const DOCS = ['Birth Certificate', 'Previous School TC & Mark Sheets', '2 Passport-size Photos', 'Aadhar Card (child & parent)', 'Address Proof', 'Caste Certificate (if applicable)'];
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-const FEES = [
-  { grade: 'Nursery – KG 2', annual: '₹45,000', reg: '₹2,000' },
-  { grade: 'Grades 1 – 2',   annual: '₹48,000', reg: '₹2,000' },
-  { grade: 'Grades 3 – 5',   annual: '₹52,000', reg: '₹2,500' },
-  { grade: 'Grades 6 – 8',   annual: '₹58,000', reg: '₹2,500' },
-  { grade: 'Grades 9 – 10',  annual: '₹65,000', reg: '₹3,000' },
-  { grade: 'Grades 11 – 12', annual: '₹75,000', reg: '₹3,000' },
-];
+  const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
+  const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
-const GRADES = ['Nursery', 'KG 1', 'KG 2', 'Grade 1','Grade 2','Grade 3','Grade 4','Grade 5','Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11','Grade 12'];
-
-export default function Admissions() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', studentName: '', gradeApplying: '', message: '' });
-  const [status, setStatus] = useState(null); // 'success' | 'error' | null
-  const [loading, setLoading] = useState(false);
-
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const submit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setStatus('loading');
     try {
-      await axios.post('/api/enquiry', form);
-      setStatus('success');
-      setForm({ name: '', email: '', phone: '', studentName: '', gradeApplying: '', message: '' });
-    } catch {
+      const res = await axios.post('http://localhost:5000/api/admissions', formData);
+      if (res.data.success) {
+        setStatus('success');
+      }
+    } catch (err) {
       setStatus('error');
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <main>
-      <title>Admissions | Raigad International School</title>
-      <section className="page-hero">
-        <div className="container">
-          <span className="overline" style={{ color: 'var(--gold-l)' }}>Admissions 2025–26</span>
-          <h1>Join the Raigad Family</h1>
-          <p>Seats are limited. Begin your child's journey with us today.</p>
+    <div className="w-full pt-10 pb-20 bg-brand-light">
+      <SectionTitle title="Admissions" subtitle="Join the Raigad School family. Start your child's journey today." icon={UserPlus} color="brand-blue" />
+
+      {/* Roadmap */}
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="flex flex-col md:flex-row justify-between relative">
+          <div className="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -z-10 -translate-y-1/2" />
+          {[
+            { num: 1, title: 'Submit Form', icon: FileText, color: 'brand-blue' },
+            { num: 2, title: 'Campus Visit', icon: Calendar, color: 'brand-yellow' },
+            { num: 3, title: 'Enrollment', icon: CheckCircle2, color: 'brand-green' }
+          ].map((item, i) => (
+            <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center mb-8 md:mb-0 bg-brand-light px-4">
+              <div className={`w-16 h-16 rounded-full bg-${item.color} text-white flex items-center justify-center font-black text-2xl shadow-lg border-4 border-white mb-4`}>
+                <item.icon size={28} />
+              </div>
+              <h3 className="font-bold text-brand-dark text-lg">{item.title}</h3>
+              <p className="text-gray-500 font-medium text-sm">Step 0{item.num}</p>
+            </AnimatedSection>
+          ))}
         </div>
       </section>
-      <RidgeDivider flip bg="var(--sand)" />
 
-      {/* Steps */}
-      <section className="section bg-sand">
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline">How to Apply</span>
-            <h2>Simple 4-Step Process</h2>
-            <span className="gold-line gold-line-center" />
-          </div>
-          <div className="grid-4">
-            {STEPS.map((s, i) => (
-              <div key={s.title} className="card reveal" style={{ textAlign: 'center', position: 'relative' }}>
-                <div className="card-body">
-                  <div style={{ position: 'absolute', top: '1rem', left: '1rem', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--gold)', color: 'var(--maroon-d)', fontWeight: 800, fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</div>
-                  <div style={{ fontSize: '2.5rem', margin: 'var(--sp-sm) 0' }}>{s.icon}</div>
-                  <h4>{s.title}</h4>
-                  <span className="gold-line gold-line-center" />
-                  <p>{s.desc}</p>
+      {/* Application Form */}
+      <section className="max-w-3xl mx-auto px-4 mt-8">
+        <AnimatedSection className="clay-card p-8 md:p-12 border-t-8 border-brand-yellow relative overflow-hidden">
+          
+          {status === 'success' ? (
+            <div className="text-center py-12">
+              <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle2 size={48} />
+              </div>
+              <h2 className="text-3xl font-black text-brand-dark mb-4">Application Submitted!</h2>
+              <p className="text-gray-600 font-medium mb-8">
+                Thank you for applying to Raigad School. Our admissions team will review your application and contact you shortly.
+              </p>
+              <button 
+                onClick={() => { setStatus('idle'); setStep(1); setFormData({studentName: '', dob: '', grade: '', parentName: '', parentEmail: '', parentPhone: '', address: '', previousSchool: ''}); }}
+                className="clay-button bg-brand-blue text-white"
+              >
+                Submit Another
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Step Indicator */}
+              <div className="flex justify-between items-center mb-8 pb-4 border-b-2 border-gray-100">
+                <h3 className="text-2xl font-black text-brand-dark">
+                  {step === 1 && 'Student Information'}
+                  {step === 2 && 'Parent Information'}
+                  {step === 3 && 'Review & Submit'}
+                </h3>
+                <div className="flex space-x-2">
+                  {[1, 2, 3].map((s) => (
+                    <div key={s} className={`h-2 w-8 rounded-full transition-colors ${s <= step ? 'bg-brand-blue' : 'bg-gray-200'}`} />
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Fee table */}
-      <section className="section" style={{ background: 'var(--sand-d)' }}>
-        <div className="container">
-          <div className="section-heading">
-            <span className="overline">Fees</span>
-            <h2>Fee Structure 2025–26</h2>
-            <span className="gold-line gold-line-center" />
-            <p>All amounts are indicative. Bus fees and activity fees are charged separately.</p>
-          </div>
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', background: 'var(--white)', borderRadius: 'var(--r-md)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
-              <thead style={{ background: 'var(--maroon)', color: 'var(--sand)' }}>
-                <tr>
-                  {['Grade', 'Annual Tuition', 'Registration Fee'].map((h) => (
-                    <th key={h} style={{ padding: '1rem 1.2rem', textAlign: 'left', fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 'var(--fs-sm)' }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {FEES.map((r, i) => (
-                  <tr key={r.grade} style={{ background: i % 2 === 0 ? 'var(--sand)' : 'var(--white)', transition: 'background 0.2s' }}>
-                    <td style={{ padding: '0.85rem 1.2rem', fontWeight: 600, color: 'var(--maroon)' }}>{r.grade}</td>
-                    <td style={{ padding: '0.85rem 1.2rem', color: 'var(--text)' }}>{r.annual}</td>
-                    <td style={{ padding: '0.85rem 1.2rem', color: 'var(--text)' }}>{r.reg}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p style={{ marginTop: 'var(--sp-md)', color: 'var(--text-muted)', fontSize: 'var(--fs-sm)' }}>
-            💡 Merit scholarships of 10%–50% available for students with 85%+ in previous board exams.
-          </p>
-        </div>
-      </section>
+              <form onSubmit={handleSubmit} className="space-y-6 relative min-h-[300px]">
+                
+                {/* Step 1 */}
+                {step === 1 && (
+                  <motion.div initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="space-y-6">
+                    <div>
+                      <label className="block font-bold text-gray-700 mb-2">Student's Full Name *</label>
+                      <input type="text" name="studentName" value={formData.studentName} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none" />
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block font-bold text-gray-700 mb-2">Date of Birth *</label>
+                        <input type="date" name="dob" value={formData.dob} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none" />
+                      </div>
+                      <div>
+                        <label className="block font-bold text-gray-700 mb-2">Grade Applying For *</label>
+                        <select name="grade" value={formData.grade} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none bg-white">
+                          <option value="">Select Grade</option>
+                          <option value="Kindergarten">Kindergarten</option>
+                          <option value="Grade 1">Grade 1</option>
+                          <option value="Grade 2">Grade 2</option>
+                          <option value="Grade 3">Grade 3</option>
+                        </select>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
 
-      {/* Documents */}
-      <section className="section bg-sand">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--sp-xl)', alignItems: 'start' }}>
-            <div>
-              <span className="overline">Documents Required</span>
-              <h2>What to Bring</h2>
-              <span className="gold-line" />
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginTop: 'var(--sp-md)' }}>
-                {DOCS.map((d) => (
-                  <li key={d} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-muted)', fontSize: 'var(--fs-sm)' }}>
-                    <span style={{ color: 'var(--gold)', fontWeight: 700 }}>✓</span> {d}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                {/* Step 2 */}
+                {step === 2 && (
+                  <motion.div initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="space-y-6">
+                    <div>
+                      <label className="block font-bold text-gray-700 mb-2">Parent/Guardian Name *</label>
+                      <input type="text" name="parentName" value={formData.parentName} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none" />
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block font-bold text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" name="parentEmail" value={formData.parentEmail} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none" />
+                      </div>
+                      <div>
+                        <label className="block font-bold text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" name="parentPhone" value={formData.parentPhone} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block font-bold text-gray-700 mb-2">Residential Address *</label>
+                      <textarea name="address" value={formData.address} onChange={handleChange} required rows="2" className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-blue outline-none resize-none"></textarea>
+                    </div>
+                  </motion.div>
+                )}
 
-            {/* Enquiry form */}
-            <div id="enquiry-form">
-              <span className="overline">Enquiry Form</span>
-              <h2>Register Your Interest</h2>
-              <span className="gold-line" />
-              {status === 'success' && (
-                <div style={{ background: '#d1fae5', border: '1px solid #6ee7b7', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: '#065f46' }}>
-                  ✅ Thank you! We'll contact you within 24 hours.
+                {/* Step 3 */}
+                {step === 3 && (
+                  <motion.div initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="space-y-4">
+                    <div className="bg-gray-50 p-6 rounded-2xl border-2 border-gray-100">
+                      <h4 className="font-bold text-brand-dark mb-4 border-b pb-2">Student Details</h4>
+                      <p><span className="text-gray-500 w-32 inline-block">Name:</span> <strong>{formData.studentName}</strong></p>
+                      <p><span className="text-gray-500 w-32 inline-block">Grade:</span> <strong>{formData.grade}</strong></p>
+                      <p><span className="text-gray-500 w-32 inline-block">DOB:</span> <strong>{formData.dob}</strong></p>
+                      
+                      <h4 className="font-bold text-brand-dark mt-6 mb-4 border-b pb-2">Parent Details</h4>
+                      <p><span className="text-gray-500 w-32 inline-block">Name:</span> <strong>{formData.parentName}</strong></p>
+                      <p><span className="text-gray-500 w-32 inline-block">Contact:</span> <strong>{formData.parentEmail} / {formData.parentPhone}</strong></p>
+                    </div>
+                    {status === 'error' && (
+                      <p className="text-red-500 font-bold">Failed to submit application. Please ensure all required fields are filled.</p>
+                    )}
+                  </motion.div>
+                )}
+
+                {/* Navigation Buttons */}
+                <div className="flex justify-between pt-8 border-t-2 border-gray-100">
+                  {step > 1 ? (
+                    <button type="button" onClick={prevStep} className="px-6 py-2 rounded-full font-bold text-gray-600 hover:bg-gray-100">
+                      Back
+                    </button>
+                  ) : <div></div>}
+                  
+                  {step < 3 ? (
+                    <button type="button" onClick={nextStep} className="clay-button bg-brand-blue text-white flex items-center gap-2">
+                      Next Step <ChevronRight size={20} />
+                    </button>
+                  ) : (
+                    <button type="submit" disabled={status === 'loading'} className="clay-button bg-brand-green text-white flex items-center gap-2">
+                      {status === 'loading' ? 'Submitting...' : 'Submit Application'}
+                    </button>
+                  )}
                 </div>
-              )}
-              {status === 'error' && (
-                <div style={{ background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 'var(--r-sm)', padding: '1rem', marginBottom: 'var(--sp-md)', color: '#991b1b' }}>
-                  ❌ Something went wrong. Please call us directly.
-                </div>
-              )}
-              <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-md)' }}>
-                <div className="grid-2" style={{ gap: 'var(--sp-md)' }}>
-                  <div className="form-group">
-                    <label htmlFor="adm-name">Parent Name *</label>
-                    <input id="adm-name" name="name" value={form.name} onChange={handle} required placeholder="Full name" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="adm-phone">Phone *</label>
-                    <input id="adm-phone" name="phone" value={form.phone} onChange={handle} required placeholder="+91 XXXXX XXXXX" />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="adm-email">Email *</label>
-                  <input id="adm-email" name="email" type="email" value={form.email} onChange={handle} required placeholder="your@email.com" />
-                </div>
-                <div className="grid-2" style={{ gap: 'var(--sp-md)' }}>
-                  <div className="form-group">
-                    <label htmlFor="adm-student">Student Name</label>
-                    <input id="adm-student" name="studentName" value={form.studentName} onChange={handle} placeholder="Child's name" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="adm-grade">Grade Applying For</label>
-                    <select id="adm-grade" name="gradeApplying" value={form.gradeApplying} onChange={handle}>
-                      <option value="">Select grade</option>
-                      {GRADES.map((g) => <option key={g} value={g}>{g}</option>)}
-                    </select>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="adm-message">Message / Questions</label>
-                  <textarea id="adm-message" name="message" value={form.message} onChange={handle} required placeholder="Tell us about your child or any questions you have..." />
-                </div>
-                <button type="submit" className="btn btn-primary" id="adm-submit-btn" disabled={loading} style={{ alignSelf: 'flex-start' }}>
-                  {loading ? 'Submitting…' : 'Submit Enquiry'}
-                </button>
               </form>
-            </div>
-          </div>
-        </div>
+            </>
+          )}
+        </AnimatedSection>
       </section>
-
-      <style>{`@media(max-width:700px){.container .grid-2[style]{grid-template-columns:1fr!important;}}`}</style>
-    </main>
+    </div>
   );
-}
+};
+
+export default Admissions;

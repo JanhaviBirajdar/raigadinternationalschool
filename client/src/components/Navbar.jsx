@@ -1,96 +1,89 @@
-import { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import logo from '../assets/logo.jpeg';
-import './Navbar.css';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, GraduationCap } from 'lucide-react';
 
-const NAV_LINKS = [
-  { label: 'Home',       to: '/'          },
-  { label: 'About',      to: '/about'     },
-  { label: 'Academics',  to: '/academics' },
-  { label: 'Admissions', to: '/admissions'},
-  { label: 'Facilities', to: '/facilities'},
-  { label: 'Faculty',    to: '/faculty'   },
-  { label: 'Events',     to: '/events'    },
-  { label: 'Gallery',    to: '/gallery'   },
-  { label: 'Blog',       to: '/blog'      },
-  { label: 'Contact',    to: '/contact'   },
-];
+const Navbar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const location = useLocation();
 
-export default function Navbar() {
-  const [scrolled,   setScrolled]   = useState(false);
-  const [menuOpen,   setMenuOpen]   = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const links = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Academics', path: '/academics' },
+    { name: 'Admissions', path: '/admissions' },
+    { name: 'Facilities', path: '/facilities' },
+    { name: 'Events', path: '/events' },
+    { name: 'Faculty', path: '/faculty' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
-    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
-      <div className="container flex-between">
-        {/* Logo */}
-        <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <img src={logo} alt="RIS Logo" className="navbar__logo-img" />
-          <div className="navbar__logo-text">
-            <span className="logo-name">Raigad</span>
-            <span className="logo-sub">International School</span>
-          </div>
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="navbar__links">
-          {NAV_LINKS.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                `navbar__link ${isActive ? 'navbar__link--active' : ''}`
-              }
-              end={l.to === '/'}
-            >
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* CTA + hamburger */}
-        <div className="navbar__actions">
-          <Link to="/admissions" className="btn btn-primary navbar__cta">
-            Apply Now
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b-4 border-brand-yellow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="p-2 bg-brand-yellow rounded-xl group-hover:rotate-12 transition-transform">
+              <GraduationCap size={32} className="text-brand-dark" />
+            </div>
+            <span className="font-extrabold text-2xl text-brand-dark tracking-tight">Raigad School</span>
           </Link>
-          <button
-            className={`hamburger ${menuOpen ? 'hamburger--open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span /><span /><span />
-          </button>
+
+          <div className="hidden md:flex space-x-1">
+            {links.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`px-4 py-2 rounded-full font-bold transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-brand-blue text-white shadow-[0_4px_0_#4693D4] -translate-y-1' 
+                      : 'text-brand-dark hover:bg-gray-100 hover:-translate-y-1'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-xl bg-gray-100 text-brand-dark hover:bg-gray-200 transition-colors"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile drawer */}
-      <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
-        {NAV_LINKS.map((l) => (
-          <NavLink
-            key={l.to}
-            to={l.to}
-            className="mobile-menu__link"
-            onClick={() => setMenuOpen(false)}
-            end={l.to === '/'}
-          >
-            {l.label}
-          </NavLink>
-        ))}
-        <Link
-          to="/admissions"
-          className="btn btn-primary"
-          style={{ margin: '1rem 1.5rem' }}
-          onClick={() => setMenuOpen(false)}
-        >
-          Apply Now
-        </Link>
-      </div>
-    </header>
+      {isOpen && (
+        <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b-4 border-brand-yellow shadow-xl">
+          <div className="px-4 pt-2 pb-6 space-y-2">
+            {links.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-3 rounded-xl font-bold transition-all ${
+                    isActive 
+                      ? 'bg-brand-blue text-white' 
+                      : 'text-brand-dark hover:bg-gray-100'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </nav>
   );
-}
+};
+
+export default Navbar;
