@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, Book, Beaker, Code, Palette, ChevronDown } from 'lucide-react';
+import { GraduationCap, Book, Beaker, Code, Palette, ChevronDown, CheckCircle2, Award, Sparkles } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
 
 const Academics = () => {
-  const [activeTab, setActiveTab] = useState('kindergarten');
+  const [activeBoard, setActiveBoard] = useState('cbse');
+  const [activeTab, setActiveTab] = useState('primary');
   const [activeSubject, setActiveSubject] = useState(null);
 
   const tabs = [
-    { id: 'kindergarten', name: 'Kindergarten', color: 'brand-yellow', icon: Palette },
-    { id: 'primary', name: 'Primary (1-5)', color: 'brand-blue', icon: Book },
-    { id: 'middle', name: 'Middle (6-8)', color: 'brand-green', icon: Beaker },
-    { id: 'high', name: 'High School', color: 'brand-coral', icon: Code },
+    { id: 'kindergarten', name: 'Kindergarten', color: 'brand-coral', icon: Palette },
+    { id: 'primary', name: 'Primary (1-5)', color: 'brand-navy', icon: Book },
+    { id: 'middle', name: 'Middle (6-8)', color: 'brand-yellow', icon: Beaker },
+    { id: 'high', name: 'High School (9-10)', color: 'brand-coral', icon: Code },
   ];
 
   const curriculum = {
@@ -52,10 +53,102 @@ const Academics = () => {
 
   return (
     <div className="w-full pt-10 pb-20 bg-brand-light">
-      <SectionTitle title="Academics" subtitle="A comprehensive curriculum designed for every stage of growth." icon={GraduationCap} color="brand-blue" />
+      <SectionTitle 
+        title="Academics & Curricula" 
+        subtitle="Dual-board excellence: CBSE & Maharashtra State Board syllabi designed for every stage of growth." 
+        icon={GraduationCap} 
+        color="brand-coral" 
+      />
+
+      {/* Motto Banner */}
+      <div className="max-w-4xl mx-auto px-4 text-center mt-4 mb-12">
+        <p className="text-xl sm:text-2xl font-black text-brand-yellow drop-shadow-sm italic">
+          "Education is the key to Success"
+        </p>
+        <p className="text-sm font-semibold text-gray-500 mt-1">
+          RAIGAD INTERNATIONAL school • Koyana Velhe, Taloja, Panvel
+        </p>
+      </div>
+
+      {/* Board Pathways Spotlight */}
+      <section className="max-w-6xl mx-auto px-4 mb-16">
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* CBSE Board Card */}
+          <div className="clay-card p-8 border-t-8 border-brand-navy flex flex-col justify-between hover:shadow-xl transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="px-3 py-1 bg-brand-navy text-white text-xs font-black rounded-full uppercase tracking-wider">
+                  National Syllabus
+                </span>
+                <Sparkles size={20} className="text-brand-yellow" />
+              </div>
+              <h3 className="text-2xl font-black text-brand-navy mb-3">CBSE Board Curriculum</h3>
+              <p className="text-gray-600 font-medium text-sm leading-relaxed mb-6">
+                Central Board of Secondary Education emphasizes conceptual clarity, experiential STEM learning, coding, and strong preparation for national competitive examinations (JEE, NEET, Olympiads, CUET).
+              </p>
+              <ul className="space-y-2.5 text-sm font-semibold text-gray-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                  <span>NCERT mapped scientific and mathematical concepts</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                  <span>Interactive laboratories and smart digital learning</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                  <span>Continuous & Comprehensive Evaluation (CCE)</span>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 pt-4 border-t border-gray-100 flex items-center justify-between">
+              <span className="text-xs font-bold text-gray-500">Grades: Pre-K to Grade 10</span>
+              <span className="text-xs font-extrabold text-brand-navy bg-blue-50 px-2.5 py-1 rounded-md">CBSE Stream</span>
+            </div>
+          </div>
+
+          {/* Maharashtra State Board Card */}
+          <div className="clay-card p-8 border-t-8 border-brand-coral flex flex-col justify-between hover:shadow-xl transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="px-3 py-1 bg-brand-coral text-white text-xs font-black rounded-full uppercase tracking-wider">
+                  State Syllabus
+                </span>
+                <Award size={20} className="text-brand-yellow" />
+              </div>
+              <h3 className="text-2xl font-black text-brand-navy mb-3">Maharashtra State Board</h3>
+              <p className="text-gray-600 font-medium text-sm leading-relaxed mb-6">
+                Maharashtra State Board of Secondary & Higher Secondary Education offers an exhaustive, culturally grounded syllabus fostering strong linguistic competence, regional awareness, and balanced academic development.
+              </p>
+              <ul className="space-y-2.5 text-sm font-semibold text-gray-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                  <span>Structured curriculum aligned with state educational benchmarks</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                  <span>Linguistic depth in English, Hindi, and Marathi</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                  <span>Strong foundation for state examinations and local careers</span>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 pt-4 border-t border-gray-100 flex items-center justify-between">
+              <span className="text-xs font-bold text-gray-500">Grades: Pre-K to Grade 10</span>
+              <span className="text-xs font-extrabold text-brand-coral bg-red-50 px-2.5 py-1 rounded-md">State Board Stream</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Grade Tabs */}
       <section className="max-w-6xl mx-auto px-4 mt-8">
+        <div className="text-center mb-8">
+          <h3 className="text-2xl font-black text-brand-navy">Grade-Wise Learning Journey</h3>
+          <p className="text-gray-500 font-medium text-sm mt-1">Structured pedagogy across both boards</p>
+        </div>
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -65,7 +158,7 @@ const Academics = () => {
                 onClick={() => { setActiveTab(tab.id); setActiveSubject(null); }}
                 className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all duration-300 ${
                   isActive 
-                    ? `bg-${tab.color} text-white shadow-[0_4px_0_#cbd5e1] -translate-y-1` 
+                    ? 'bg-brand-navy text-white shadow-lg -translate-y-1' 
                     : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-100'
                 }`}
               >

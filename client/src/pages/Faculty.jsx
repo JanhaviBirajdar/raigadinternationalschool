@@ -1,10 +1,34 @@
 import React, { useState } from 'react';
-import { Users, Mail, Star, Award } from 'lucide-react';
+import { Users, Mail, Star, Award, ShieldCheck } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
 
 const Faculty = () => {
   const [filter, setFilter] = useState('all');
+
+  const leadership = [
+    {
+      name: 'Dr. Venkat Alat',
+      role: 'Trustee',
+      org: 'Raigadh International School',
+      image: '/dr_venkat_alat.png',
+      desc: 'Holds a visionary commitment to providing the highest quality education to our young learners, with a strong focus on their overall development and future success.'
+    },
+    {
+      name: 'Abhijeet Deshmukh',
+      role: 'Secretary',
+      org: 'Sakar Social & Educational Organization',
+      image: '/abhijeet_deshmukh.png',
+      desc: 'S.S.H. School and Junior College Kamothe; Secretary, Sakar Social and Educational Organization, driving educational reach, community trust, and academic standards.'
+    },
+    {
+      name: 'Mrs. Ashwini Deshmukh',
+      role: 'Principal',
+      org: 'RAIGAD INTERNATIONAL SCHOOL',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
+      desc: 'Dedicated to fostering dual-track CBSE and State Board excellence, continuous teacher training, and an inclusive learning environment for every child.'
+    }
+  ];
 
   const departments = [
     { id: 'all', name: 'All Departments' },
@@ -14,7 +38,7 @@ const Faculty = () => {
   ];
 
   const staff = [
-    { id: 1, name: 'Dr. Sarah Jenkins', role: 'Principal', dept: 'admin', exp: '20+ Yrs', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop' },
+    { id: 1, name: 'Mrs. Ashwini Deshmukh', role: 'Principal', dept: 'admin', exp: '20+ Yrs', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop' },
     { id: 2, name: 'Mr. Robert Chen', role: 'Head of Science', dept: 'science', exp: '15 Yrs', image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=400&auto=format&fit=crop' },
     { id: 3, name: 'Ms. Emily Davis', role: 'Math Teacher', dept: 'science', exp: '8 Yrs', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop' },
     { id: 4, name: 'Mr. David Smith', role: 'History Teacher', dept: 'arts', exp: '12 Yrs', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
@@ -26,35 +50,42 @@ const Faculty = () => {
 
   return (
     <div className="w-full pt-10 pb-20 bg-brand-light">
-      <SectionTitle title="Faculty & Staff" subtitle="Meet the brilliant minds shaping our future leaders." icon={Users} color="brand-green" />
+      <SectionTitle 
+        title="Leadership & Faculty" 
+        subtitle="Meet the visionary leadership and dedicated educators guiding RAIGAD INTERNATIONAL SCHOOL." 
+        icon={Users} 
+        color="brand-coral" 
+      />
 
-      {/* Teacher of the Month */}
-      <section className="max-w-4xl mx-auto px-4 mt-12 mb-16">
-        <AnimatedSection className="relative bg-gradient-to-br from-brand-yellow to-brand-coral rounded-[40px] p-2 shadow-2xl">
-          <div className="bg-white rounded-[32px] p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-brand-yellow text-brand-dark px-6 py-2 rounded-bl-3xl font-black flex items-center gap-2">
-              <Star size={16} className="fill-brand-dark" />
-              Teacher of the Month
-            </div>
-            
-            <div className="w-48 h-48 rounded-full overflow-hidden border-8 border-brand-yellow/20 shrink-0">
-              <img src={staff[1].image} alt={staff[1].name} className="w-full h-full object-cover" />
-            </div>
-            
-            <div>
-              <h2 className="text-3xl font-black text-brand-dark mb-2">{staff[1].name}</h2>
-              <p className="text-brand-blue font-bold text-lg mb-4">{staff[1].role}</p>
-              <p className="text-gray-600 font-medium italic mb-6">
-                "For exceptional dedication to making physics fun and accessible through interactive robotics projects."
-              </p>
-              <div className="flex gap-4">
-                <div className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full text-sm font-bold text-gray-600">
-                  <Award size={16} className="text-brand-coral" /> Innovation Award
+      {/* Leadership & Trustees Section */}
+      <section className="max-w-7xl mx-auto px-4 mt-12 mb-20">
+        <div className="text-center mb-10">
+          <span className="text-xs font-black uppercase tracking-widest text-brand-coral bg-red-50 px-4 py-1.5 rounded-full inline-block mb-2">
+            Governance & Vision
+          </span>
+          <h2 className="text-3xl font-black text-brand-navy">Board of Trustees & Leadership</h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {leadership.map((leader, i) => (
+            <AnimatedSection key={i} delay={i * 0.1}>
+              <div className="clay-card h-full flex flex-col p-8 bg-white border-t-8 border-brand-navy group hover:-translate-y-2 transition-all">
+                <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-yellow shadow-md mb-6 bg-gray-50 flex items-center justify-center">
+                  <img src={leader.image} alt={leader.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                 </div>
+                <div className="text-center mb-3">
+                  <h3 className="text-2xl font-black text-brand-navy">{leader.name}</h3>
+                  <span className="inline-block mt-1 px-3 py-1 bg-brand-light border border-gray-200 text-brand-coral font-bold text-xs rounded-full">
+                    {leader.role} • {leader.org}
+                  </span>
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed text-justify mt-2 flex-grow">
+                  {leader.desc}
+                </p>
               </div>
-            </div>
-          </div>
-        </AnimatedSection>
+            </AnimatedSection>
+          ))}
+        </div>
       </section>
 
       {/* Filters */}

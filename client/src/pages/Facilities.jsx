@@ -8,9 +8,16 @@ const Facilities = () => {
 
   const facilities = [
     {
+      title: "Main Campus Building",
+      icon: Building,
+      color: "brand-navy",
+      desc: "Our architecturally modern campus features secure multi-story educational infrastructure bearing the official RIS crest, spacious smart classrooms, and dedicated administrative wings at Koyana Velhe, Panvel.",
+      image: "/school_building.png"
+    },
+    {
       title: "Central Library",
       icon: Library,
-      color: "brand-blue",
+      color: "brand-coral",
       desc: "A vast collection of over 50,000 books, digital archives, and quiet reading zones designed to foster a love for reading.",
       image: "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=800&auto=format&fit=crop"
     },
@@ -46,7 +53,12 @@ const Facilities = () => {
 
   return (
     <div className="w-full pt-10 pb-20 bg-brand-light">
-      <SectionTitle title="Campus Facilities" subtitle="World-class infrastructure for holistic development." icon={Building} color="brand-yellow" />
+      <SectionTitle 
+        title="Campus Facilities" 
+        subtitle="World-class CBSE & State Board infrastructure at RAIGAD INTERNATIONAL school, Koyana Velhe, Panvel." 
+        icon={Building} 
+        color="brand-coral" 
+      />
 
       <section className="max-w-7xl mx-auto px-4 mt-12 grid lg:grid-cols-3 gap-8">
         

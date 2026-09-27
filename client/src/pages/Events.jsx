@@ -47,7 +47,12 @@ const Events = () => {
 
   return (
     <div className="w-full pt-10 pb-20 bg-brand-light">
-      <SectionTitle title="Events & Gallery" subtitle="Discover the vibrant life at Raigad School." icon={CalendarIcon} color="brand-coral" />
+      <SectionTitle 
+        title="Events & Campus Life" 
+        subtitle="Vibrant co-curricular life at RAIGAD INTERNATIONAL school. Education is the key to Success." 
+        icon={CalendarIcon} 
+        color="brand-coral" 
+      />
 
       {/* Filters */}
       <div className="max-w-6xl mx-auto px-4 mt-8 mb-12 flex flex-wrap justify-center gap-3">

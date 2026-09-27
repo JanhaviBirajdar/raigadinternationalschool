@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Flag, Users, Heart, Star, Sparkles, BookOpen } from 'lucide-react';
+import { Target, Flag, Users, Heart, Star, Sparkles, BookOpen, MapPin, Phone, ExternalLink } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
+import logoImg from '../assets/logo.png';
 
 const About = () => {
   return (
@@ -11,81 +12,223 @@ const About = () => {
       {/* 1. Header */}
       <section className="py-16 text-center max-w-4xl mx-auto px-4">
         <AnimatedSection>
-          <div className="inline-block p-4 bg-brand-blue/10 text-brand-blue rounded-3xl mb-6">
-            <BookOpen size={48} />
+          <div className="inline-block p-4 bg-white rounded-3xl shadow-xl mb-6 border-2 border-brand-yellow">
+            <img src={logoImg} alt="RAIGAD INTERNATIONAL school" className="w-24 h-24 object-contain mx-auto" />
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-brand-dark mb-6">
-            Our Story & <span className="text-brand-coral">Values</span>
+          <span className="text-xs font-black tracking-widest uppercase text-brand-coral bg-brand-coral/10 px-4 py-1.5 rounded-full inline-block mb-3">
+            CBSE & State Board Curriculum
+          </span>
+          <h1 className="text-4xl md:text-6xl font-black text-brand-navy mb-4 tracking-tight">
+            RAIGAD INTERNATIONAL <span className="text-brand-coral">school</span>
           </h1>
-          <p className="text-xl text-gray-600 font-medium leading-relaxed">
-            Founded in 1995, Raigad International School has been at the forefront of innovative education, 
-            blending traditional values with modern teaching methodologies.
+          <p className="text-2xl font-black text-brand-yellow italic mb-6">
+            "Education is the key to Success"
+          </p>
+          <p className="text-lg md:text-xl text-gray-700 font-medium leading-relaxed">
+            Situated at Koyana Velhe, Taloja (Panvel), RAIGAD INTERNATIONAL school is an institution committed to academic brilliance, moral integrity, and modern innovation under both CBSE and Maharashtra State Board pathways.
           </p>
         </AnimatedSection>
       </section>
 
-      {/* 2. Vision & Mission Flip Cards */}
-      <section className="py-16 bg-brand-light">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12">
-          {/* Vision Card */}
-          <AnimatedSection delay={0.2} className="group perspective-1000 h-80">
-            <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
-              {/* Front */}
-              <div className="absolute inset-0 backface-hidden bg-white rounded-[40px] p-8 flex flex-col items-center justify-center text-center shadow-[8px_8px_16px_#e6e6e6,-8px_-8px_16px_#ffffff] border-4 border-brand-yellow">
-                <Target size={64} className="text-brand-yellow mb-6" />
-                <h2 className="text-3xl font-black text-brand-dark">Our Vision</h2>
-                <p className="text-gray-500 font-bold mt-4">Hover to reveal</p>
-              </div>
-              {/* Back */}
-              <div className="absolute inset-0 backface-hidden rotate-y-180 bg-brand-yellow rounded-[40px] p-8 flex items-center justify-center text-center shadow-xl">
-                <p className="text-2xl font-bold text-brand-dark leading-snug">
-                  "To be a globally recognized institution that empowers students to be compassionate, innovative, and responsible leaders of tomorrow."
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
+      {/* 2. Vision & Mission Section with Building Image */}
+      <section className="py-20 bg-brand-light">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionTitle 
+            title="Our Vision & Mission" 
+            subtitle="Building global citizens through nurturing, innovation, and unwavering persistence." 
+            icon={Target} 
+            color="brand-coral" 
+          />
 
-          {/* Mission Card */}
-          <AnimatedSection delay={0.4} className="group perspective-1000 h-80">
-            <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
-              {/* Front */}
-              <div className="absolute inset-0 backface-hidden bg-white rounded-[40px] p-8 flex flex-col items-center justify-center text-center shadow-[8px_8px_16px_#e6e6e6,-8px_-8px_16px_#ffffff] border-4 border-brand-blue">
-                <Flag size={64} className="text-brand-blue mb-6" />
-                <h2 className="text-3xl font-black text-brand-dark">Our Mission</h2>
-                <p className="text-gray-500 font-bold mt-4">Hover to reveal</p>
-              </div>
-              {/* Back */}
-              <div className="absolute inset-0 backface-hidden rotate-y-180 bg-brand-blue rounded-[40px] p-8 flex items-center justify-center text-center shadow-xl">
-                <p className="text-xl font-bold text-white leading-snug">
-                  "To provide a holistic learning environment that nurtures intellectual curiosity, fosters creativity, and builds strong moral character through excellence in education."
+          <div className="grid lg:grid-cols-12 gap-10 items-stretch mt-12">
+            {/* Vision and Mission Content */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-8">
+              {/* Mission Box */}
+              <AnimatedSection delay={0.1}>
+                <div className="clay-card p-8 border-l-8 border-brand-coral bg-white shadow-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 bg-red-50 text-brand-coral rounded-xl">
+                      <Flag size={24} />
+                    </div>
+                    <h3 className="text-2xl font-black text-brand-navy uppercase tracking-wide">Our Mission</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed font-medium text-justify">
+                    At Raigadh International School, our mission is to create a nurturing and innovative environment that empowers students to become global citizens. We foster healthy competition to motivate students to push themselves every day, believing that success is built through persistence and an attitude of never giving up. Our commitment is to provide a well-rounded education that promotes academic excellence, personal growth, and the development of critical thinking, creativity, and leadership skills. Through diverse learning experiences, we inspire students to embrace challenges, celebrate diversity, and contribute positively to society.
+                  </p>
+                </div>
+              </AnimatedSection>
+
+              {/* Vision Box */}
+              <AnimatedSection delay={0.2}>
+                <div className="clay-card p-8 border-l-8 border-brand-yellow bg-white shadow-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 bg-amber-50 text-brand-yellow rounded-xl">
+                      <Target size={24} />
+                    </div>
+                    <h3 className="text-2xl font-black text-brand-navy uppercase tracking-wide">Our Vision</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed font-medium text-justify">
+                    Our vision is to provide quality education to every student, regardless of their background, ensuring they reach their fullest potential. We are dedicated not only to fostering academic proficiency but also to instilling values of equality, kindness, and respect for all individuals. By nurturing these core values, we aim to shape responsible, compassionate leaders who will contribute to a better tomorrow.
+                  </p>
+                </div>
+              </AnimatedSection>
+            </div>
+
+            {/* School Building Display */}
+            <div className="lg:col-span-5 flex flex-col">
+              <AnimatedSection delay={0.3} className="h-full">
+                <div className="clay-card p-4 sm:p-6 bg-white h-full flex flex-col justify-between border-4 border-brand-yellow/30 shadow-xl">
+                  <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-gray-100 flex-grow flex items-center justify-center p-2">
+                    <img 
+                      src="/school_building.png" 
+                      alt="RAIGAD INTERNATIONAL SCHOOL Campus Building" 
+                      className="w-full h-auto max-h-[460px] object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute top-4 left-4 bg-brand-navy/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-bold border border-brand-yellow/40">
+                      Modern Infrastructure
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-gray-100 text-center">
+                    <h4 className="font-black text-brand-navy text-lg">RAIGAD INTERNATIONAL SCHOOL</h4>
+                    <p className="text-xs font-semibold text-gray-500 mt-0.5">Koyana Velhe, Ghotkamp Koyana Vele, Taloja, Panvel</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Meet Our Team Section (From Official Brochure) */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionTitle 
+            title="Meet Our Team" 
+            subtitle="The visionary leadership steering academic excellence and character development." 
+            icon={Users} 
+            color="brand-navy" 
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            {/* Dr. Venkat Alat */}
+            <AnimatedSection delay={0.1}>
+              <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-coral bg-white group hover:-translate-y-2 transition-all">
+                <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-coral shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
+                  <img 
+                    src="/dr_venkat_alat.png" 
+                    alt="Dr. Venkat Alat - Trustee" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                  />
+                </div>
+                <div className="text-center mb-4">
+                  <h3 className="text-2xl font-black text-brand-navy">Dr. Venkat Alat</h3>
+                  <span className="inline-block mt-1 px-3 py-1 bg-red-50 text-brand-coral font-bold text-xs rounded-full">
+                    Trustee, Raigadh International School
+                  </span>
+                </div>
+                <p className="text-gray-600 font-medium text-sm leading-relaxed text-justify mt-2 flex-grow">
+                  Dr. Venkat Alat, the trustee of Raigadh International School, holds a visionary commitment to providing the highest quality education to our young learners, with a strong focus on their overall development and future success.
                 </p>
               </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+
+            {/* Abhijeet Deshmukh */}
+            <AnimatedSection delay={0.2}>
+              <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-navy bg-white group hover:-translate-y-2 transition-all">
+                <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-navy shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
+                  <img 
+                    src="/abhijeet_deshmukh.png" 
+                    alt="Abhijeet Deshmukh - Secretary" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                  />
+                </div>
+                <div className="text-center mb-4">
+                  <h3 className="text-2xl font-black text-brand-navy">Abhijeet Deshmukh</h3>
+                  <span className="inline-block mt-1 px-3 py-1 bg-blue-50 text-brand-navy font-bold text-xs rounded-full">
+                    Secretary, Sakar Social & Educational Org.
+                  </span>
+                </div>
+                <p className="text-gray-600 font-medium text-sm leading-relaxed text-justify mt-2 flex-grow">
+                  Abhijeet Deshmukh, S.S.H. School and Junior College Kamothe, Secretary, Sakar Social and Educational Organization, actively guides our institution toward accessible, top-tier scholastic benchmarks and social contribution.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            {/* Mrs. Ashwini Deshmukh */}
+            <AnimatedSection delay={0.3} className="md:col-span-2 lg:col-span-1">
+              <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-yellow bg-white group hover:-translate-y-2 transition-all">
+                <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-yellow shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" 
+                    alt="Mrs. Ashwini Deshmukh - Principal" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                  />
+                </div>
+                <div className="text-center mb-4">
+                  <h3 className="text-2xl font-black text-brand-navy">Mrs. Ashwini Deshmukh</h3>
+                  <span className="inline-block mt-1 px-3 py-1 bg-amber-50 text-brand-navy font-bold text-xs rounded-full">
+                    Principal, RAIGAD INTERNATIONAL SCHOOL
+                  </span>
+                </div>
+                <p className="text-gray-600 font-medium text-sm leading-relaxed text-justify mt-2 flex-grow">
+                  Oversees educational leadership, faculty mentorship, and dual-track CBSE & State Board pedagogies, ensuring every student imbibes discipline, critical thinking, and a lifelong thirst for learning.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
       {/* 3. Core Values */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle title="Our Core Values" subtitle="The principles that guide our everyday actions." icon={Heart} color="brand-coral" />
+          <SectionTitle title="Our Core Values" subtitle="The principles that guide our everyday teaching at RAIGAD INTERNATIONAL school." icon={Heart} color="brand-coral" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {[
-              { title: 'Integrity', icon: Star, color: 'brand-yellow' },
-              { title: 'Excellence', icon: Sparkles, color: 'brand-blue' },
-              { title: 'Compassion', icon: Heart, color: 'brand-coral' },
-              { title: 'Inclusivity', icon: Users, color: 'brand-green' },
+              { title: 'Academic Excellence', icon: Star, color: 'text-brand-yellow', bg: 'bg-amber-50', border: 'border-brand-yellow', desc: 'Rigorous CBSE & State curricula ensuring top student outcomes.' },
+              { title: 'Ethical Integrity', icon: Sparkles, color: 'text-brand-navy', bg: 'bg-slate-50', border: 'border-brand-navy', desc: 'Instilling honesty, responsibility, and civic consciousness.' },
+              { title: 'Compassion & Care', icon: Heart, color: 'text-brand-coral', bg: 'bg-red-50', border: 'border-brand-coral', desc: 'Supportive teacher-student mentorship in every classroom.' },
+              { title: 'Inclusive Community', icon: Users, color: 'text-brand-yellow', bg: 'bg-amber-50', border: 'border-brand-yellow', desc: 'Welcoming all learners from Koyana Velhe, Panvel, and adjoining regions.' },
             ].map((value, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className={`border-2 border-${value.color} bg-white rounded-3xl p-8 text-center shadow-lg hover:-translate-y-2 transition-all`}>
-                  <div className={`w-20 h-20 mx-auto rounded-full bg-${value.color}/10 flex items-center justify-center text-${value.color} mb-6`}>
-                    <value.icon size={40} />
+                <div className={`border-2 ${value.border} bg-white rounded-3xl p-8 text-center shadow-md hover:-translate-y-2 transition-all h-full flex flex-col items-center`}>
+                  <div className={`w-16 h-16 rounded-full ${value.bg} flex items-center justify-center ${value.color} mb-6`}>
+                    <value.icon size={36} />
                   </div>
-                  <h3 className="text-2xl font-black text-brand-dark">{value.title}</h3>
+                  <h3 className="text-xl font-black text-brand-navy mb-2">{value.title}</h3>
+                  <p className="text-sm font-medium text-gray-600 leading-relaxed">{value.desc}</p>
                 </div>
               </AnimatedSection>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Campus Location Banner */}
+      <section className="py-16 bg-brand-light border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="clay-card p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-brand-yellow">
+            <div className="space-y-3 text-center md:text-left">
+              <span className="text-xs font-black uppercase text-brand-coral tracking-wider">Campus Details</span>
+              <h3 className="text-2xl md:text-3xl font-black text-brand-navy">Visit Our Campus in Panvel</h3>
+              <p className="text-gray-700 font-medium flex items-center justify-center md:justify-start gap-2 text-sm sm:text-base">
+                <MapPin size={18} className="text-brand-coral shrink-0" />
+                <span>Koyana Velhe, Ghotkamp Koyana Vele, Taloja, Panvel, Maharashtra 410208</span>
+              </p>
+              <p className="text-sm font-bold text-gray-700 flex items-center justify-center md:justify-start gap-2">
+                <Phone size={16} className="text-brand-yellow shrink-0" />
+                <span>Call Us: <a href="tel:08169568369" className="text-brand-navy underline font-extrabold">081695 68369</a></span>
+              </p>
+            </div>
+            <a
+              href="https://share.google/BnjgzEawietoNwtBE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="clay-button bg-brand-coral hover:bg-red-700 text-white flex items-center gap-2 text-sm shrink-0"
+            >
+              <ExternalLink size={16} /> Open in Google Maps
+            </a>
           </div>
         </div>
       </section>
