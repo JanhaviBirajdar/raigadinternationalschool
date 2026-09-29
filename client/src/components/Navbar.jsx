@@ -25,10 +25,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center space-x-3">
             <span className="inline-flex items-center gap-1.5 bg-brand-coral/90 text-white font-bold px-2 py-0.5 rounded-full text-[11px] tracking-wide">
-              <Sparkles size={12} /> CBSE / State Board
+              <Sparkles size={12} /> State Board - CBSE Pattern
             </span>
             <span className="hidden md:inline text-gray-300 font-medium italic">
-              "Education is the key to Success"
+              "Nurturing Young Minds. Building Bright Futures."
             </span>
           </div>
           <div className="flex items-center space-x-4 ml-auto text-xs sm:text-sm">
@@ -72,7 +72,7 @@ const Navbar = () => {
                     School
                   </span>
                   <span className="text-[10px] sm:text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
-                    CBSE / State Board
+                    State Board - CBSE Pattern
                   </span>
                 </div>
               </div>
@@ -131,7 +131,7 @@ const Navbar = () => {
                   <p className="text-xs font-bold text-gray-500">Admissions Helpline</p>
                   <a href="tel:08169568369" className="text-sm font-extrabold text-brand-coral">081695 68369</a>
                 </div>
-                <span className="text-xs bg-brand-navy text-white font-bold px-2.5 py-1 rounded-full">CBSE / State</span>
+                <span className="text-xs bg-brand-navy text-white font-bold px-2.5 py-1 rounded-full">State Board - CBSE Pattern</span>
               </div>
               {links.map((link) => {
                 const isActive = location.pathname === link.path;

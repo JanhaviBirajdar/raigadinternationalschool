@@ -27,13 +27,13 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-brand-yellow font-semibold italic text-sm">
-              "Education is the key to Success"
+              "Nurturing Young Minds. Building Bright Futures."
             </p>
             <p className="text-gray-400 text-sm font-medium leading-relaxed">
-              Empowering students with holistic education, world-class infrastructure, and values under CBSE & Maharashtra State Board curricula.
+              Empowering students with holistic education, world-class infrastructure, and values under State Board - CBSE Pattern curriculum.
             </p>
             <div className="inline-block bg-brand-navy border border-brand-yellow/40 rounded-lg px-3 py-1 text-xs text-gray-300 font-semibold">
-              Board: CBSE / State Board
+              Board: State Board - CBSE Pattern
             </div>
           </div>
 
@@ -42,7 +42,7 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-5 text-brand-yellow uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-2.5 font-medium text-sm text-gray-300">
               <li><Link to="/about" className="hover:text-brand-yellow transition-colors">About Us</Link></li>
-              <li><Link to="/academics" className="hover:text-brand-yellow transition-colors">Academics (CBSE/State)</Link></li>
+              <li><Link to="/academics" className="hover:text-brand-yellow transition-colors">Academics (State Board - CBSE Pattern)</Link></li>
               <li><Link to="/admissions" className="hover:text-brand-yellow transition-colors">Admissions 2026-27</Link></li>
               <li><Link to="/facilities" className="hover:text-brand-yellow transition-colors">Campus Facilities</Link></li>
               <li><Link to="/events" className="hover:text-brand-yellow transition-colors">Events & Activities</Link></li>
@@ -108,9 +108,9 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-gray-400">
           <p>© {new Date().getFullYear()} RAIGAD INTERNATIONAL school. All rights reserved.</p>
           <p className="flex items-center mt-4 md:mt-0 text-xs">
-            <span>CBSE & State Board</span>
+            <span>State Board - CBSE Pattern</span>
             <span className="mx-2">•</span>
-            <span className="text-brand-yellow">"Education is the key to Success"</span>
+            <span className="text-brand-yellow">"Nurturing Young Minds. Building Bright Futures."</span>
           </p>
         </div>
       </div>

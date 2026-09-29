@@ -55,7 +55,7 @@ const Academics = () => {
     <div className="w-full pt-10 pb-20 bg-brand-light">
       <SectionTitle 
         title="Academics & Curricula" 
-        subtitle="Dual-board excellence: CBSE & Maharashtra State Board syllabi designed for every stage of growth." 
+        subtitle="State Board - CBSE Pattern syllabus designed for every stage of growth." 
         icon={GraduationCap} 
         color="brand-coral" 
       />
@@ -63,7 +63,7 @@ const Academics = () => {
       {/* Motto Banner */}
       <div className="max-w-4xl mx-auto px-4 text-center mt-4 mb-12">
         <p className="text-xl sm:text-2xl font-black text-brand-yellow drop-shadow-sm italic">
-          "Education is the key to Success"
+          "Nurturing Young Minds. Building Bright Futures."
         </p>
         <p className="text-sm font-semibold text-gray-500 mt-1">
           RAIGAD INTERNATIONAL school • Koyana Velhe, Taloja, Panvel

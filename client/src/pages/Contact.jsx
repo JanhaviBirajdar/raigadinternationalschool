@@ -35,7 +35,7 @@ const Contact = () => {
     <div className="w-full pt-10 pb-20 bg-brand-light">
       <SectionTitle 
         title="Contact RAIGAD INTERNATIONAL" 
-        subtitle="Reach out for admissions, campus tours, or academic inquiries. Education is the key to Success." 
+        subtitle="Reach out for admissions, campus tours, or academic inquiries. Nurturing Young Minds. Building Bright Futures." 
         icon={Mail} 
         color="brand-coral" 
       />
@@ -80,7 +80,7 @@ const Contact = () => {
                     Koyana Velhe, Ghotkamp Koyana Vele, Taloja, Panvel, Maharashtra 410208
                   </p>
                   <span className="inline-block mt-1 text-[11px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
-                    Curriculum: CBSE / State Board
+                    Curriculum: State Board - CBSE Pattern
                   </span>
                 </div>
               </div>

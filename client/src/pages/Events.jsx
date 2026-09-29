@@ -49,7 +49,7 @@ const Events = () => {
     <div className="w-full pt-10 pb-20 bg-brand-light">
       <SectionTitle 
         title="Events & Campus Life" 
-        subtitle="Vibrant co-curricular life at RAIGAD INTERNATIONAL school. Education is the key to Success." 
+        subtitle="Vibrant co-curricular life at RAIGAD INTERNATIONAL school. Nurturing Young Minds. Building Bright Futures." 
         icon={CalendarIcon} 
         color="brand-coral" 
       />

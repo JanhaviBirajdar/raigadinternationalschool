@@ -16,16 +16,16 @@ const About = () => {
             <img src={logoImg} alt="RAIGAD INTERNATIONAL school" className="w-24 h-24 object-contain mx-auto" />
           </div>
           <span className="text-xs font-black tracking-widest uppercase text-brand-coral bg-brand-coral/10 px-4 py-1.5 rounded-full inline-block mb-3">
-            CBSE & State Board Curriculum
+            State Board - CBSE Pattern Curriculum
           </span>
           <h1 className="text-4xl md:text-6xl font-black text-brand-navy mb-4 tracking-tight">
             RAIGAD INTERNATIONAL <span className="text-brand-coral">school</span>
           </h1>
           <p className="text-2xl font-black text-brand-yellow italic mb-6">
-            "Education is the key to Success"
+            "Nurturing Young Minds. Building Bright Futures."
           </p>
           <p className="text-lg md:text-xl text-gray-700 font-medium leading-relaxed">
-            Situated at Koyana Velhe, Taloja (Panvel), RAIGAD INTERNATIONAL school is an institution committed to academic brilliance, moral integrity, and modern innovation under both CBSE and Maharashtra State Board pathways.
+            Situated at Koyana Velhe, Taloja (Panvel), RAIGAD INTERNATIONAL school is an institution committed to academic brilliance, moral integrity, and modern innovation under the State Board - CBSE Pattern curriculum.
           </p>
         </AnimatedSection>
       </section>
@@ -35,62 +35,106 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4">
           <SectionTitle 
             title="Our Vision & Mission" 
-            subtitle="Building global citizens through nurturing, innovation, and unwavering persistence." 
+            subtitle="Building global citizens through nurturing, innovation, and educational excellence." 
             icon={Target} 
             color="brand-coral" 
           />
 
-          <div className="grid lg:grid-cols-12 gap-10 items-stretch mt-12">
+          <div className="grid lg:grid-cols-12 gap-10 items-start mt-12">
             {/* Vision and Mission Content */}
-            <div className="lg:col-span-7 flex flex-col justify-between space-y-8">
-              {/* Mission Box */}
+            <div className="lg:col-span-7 flex flex-col space-y-8">
+              
+              {/* Vision Box */}
               <AnimatedSection delay={0.1}>
-                <div className="clay-card p-8 border-l-8 border-brand-coral bg-white shadow-lg">
+                <div className="clay-card p-8 border-l-8 border-brand-yellow bg-white shadow-lg">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 bg-red-50 text-brand-coral rounded-xl">
-                      <Flag size={24} />
+                    <div className="p-2.5 bg-amber-50 text-brand-yellow rounded-xl">
+                      <Target size={26} />
                     </div>
-                    <h3 className="text-2xl font-black text-brand-navy uppercase tracking-wide">Our Mission</h3>
+                    <div>
+                      <span className="text-xs font-black uppercase text-brand-yellow tracking-wider block">Core Directive</span>
+                      <h3 className="text-2xl font-black text-brand-navy uppercase tracking-wide">Our Vision</h3>
+                    </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed font-medium text-justify">
-                    At Raigadh International School, our mission is to create a nurturing and innovative environment that empowers students to become global citizens. We foster healthy competition to motivate students to push themselves every day, believing that success is built through persistence and an attitude of never giving up. Our commitment is to provide a well-rounded education that promotes academic excellence, personal growth, and the development of critical thinking, creativity, and leadership skills. Through diverse learning experiences, we inspire students to embrace challenges, celebrate diversity, and contribute positively to society.
+                  <p className="text-gray-700 leading-relaxed font-medium text-justify text-base md:text-lg">
+                    To be a centre of excellence in education that empowers every child to become a confident, compassionate, and responsible global citizen. We aspire to nurture lifelong learners who think creatively, act ethically, embrace innovation, and make meaningful contributions to society.
                   </p>
                 </div>
               </AnimatedSection>
 
-              {/* Vision Box */}
+              {/* Mission Box */}
               <AnimatedSection delay={0.2}>
-                <div className="clay-card p-8 border-l-8 border-brand-yellow bg-white shadow-lg">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 bg-amber-50 text-brand-yellow rounded-xl">
-                      <Target size={24} />
+                <div className="clay-card p-8 border-l-8 border-brand-coral bg-white shadow-lg space-y-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2.5 bg-red-50 text-brand-coral rounded-xl">
+                      <Flag size={26} />
                     </div>
-                    <h3 className="text-2xl font-black text-brand-navy uppercase tracking-wide">Our Vision</h3>
+                    <div>
+                      <span className="text-xs font-black uppercase text-brand-coral tracking-wider block">Our Purpose</span>
+                      <h3 className="text-2xl font-black text-brand-navy uppercase tracking-wide">Our Mission</h3>
+                    </div>
                   </div>
+
                   <p className="text-gray-700 leading-relaxed font-medium text-justify">
-                    Our vision is to provide quality education to every student, regardless of their background, ensuring they reach their fullest potential. We are dedicated not only to fostering academic proficiency but also to instilling values of equality, kindness, and respect for all individuals. By nurturing these core values, we aim to shape responsible, compassionate leaders who will contribute to a better tomorrow.
+                    At Raigad International School, our mission is to provide a safe, inclusive, and stimulating learning environment where every child is encouraged to discover their unique talents and achieve academic excellence.
                   </p>
+
+                  <div className="pt-2">
+                    <h4 className="text-sm font-black text-brand-navy uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <Sparkles size={16} className="text-brand-yellow" />
+                      We are committed to:
+                    </h4>
+                    <ul className="space-y-3">
+                      {[
+                        'Delivering quality education through innovative and student-centred teaching methods.',
+                        'Developing critical thinking, creativity, communication, and problem-solving skills.',
+                        'Building confidence, leadership, discipline, teamwork, and lifelong learning habits.',
+                        'Promoting values of honesty, respect, empathy, responsibility, and integrity.',
+                        'Encouraging excellence in academics, sports, arts, technology, and co-curricular activities for holistic development.',
+                        'Preparing students to become compassionate, confident, and socially responsible global citizens.',
+                        'Continuously enhancing our infrastructure and learning facilities.',
+                      ].map((item, index) => (
+                        <li key={index} className="flex items-start gap-3 text-sm text-gray-700 font-medium">
+                          <span className="w-2 h-2 rounded-full bg-brand-coral shrink-0 mt-2" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="p-4 bg-brand-light rounded-2xl border-l-4 border-brand-navy">
+                    <p className="text-gray-700 text-sm font-medium leading-relaxed">
+                      As part of our long-term vision, Raigad International School has begun the development of its modern campus, creating an inspiring environment where every child can learn, grow, and succeed.
+                    </p>
+                  </div>
+
+                  <div className="text-center pt-2">
+                    <span className="inline-block px-6 py-2 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-brand-navy font-black text-base italic shadow-sm">
+                      "Learning Today, Leading Tomorrow..."
+                    </span>
+                  </div>
                 </div>
               </AnimatedSection>
             </div>
 
             {/* School Building Display */}
             <div className="lg:col-span-5 flex flex-col">
-              <AnimatedSection delay={0.3} className="h-full">
-                <div className="clay-card p-4 sm:p-6 bg-white h-full flex flex-col justify-between border-4 border-brand-yellow/30 shadow-xl">
-                  <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-gray-100 flex-grow flex items-center justify-center p-2">
+              <AnimatedSection delay={0.3} className="h-full sticky top-24">
+                <div className="clay-card p-4 sm:p-6 bg-white flex flex-col justify-between border-4 border-brand-yellow/30 shadow-xl">
+                  <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-gray-100 flex-grow flex items-center justify-center p-2 min-h-[380px]">
                     <img 
                       src="/school_building.png" 
                       alt="RAIGAD INTERNATIONAL SCHOOL Campus Building" 
-                      className="w-full h-auto max-h-[460px] object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500" 
+                      className="w-full h-auto max-h-[480px] object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500" 
                     />
                     <div className="absolute top-4 left-4 bg-brand-navy/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-bold border border-brand-yellow/40">
-                      Modern Infrastructure
+                      Modern Campus Infrastructure
                     </div>
                   </div>
                   <div className="mt-4 pt-3 border-t border-gray-100 text-center">
                     <h4 className="font-black text-brand-navy text-lg">RAIGAD INTERNATIONAL SCHOOL</h4>
                     <p className="text-xs font-semibold text-gray-500 mt-0.5">Koyana Velhe, Ghotkamp Koyana Vele, Taloja, Panvel</p>
+                    <p className="text-xs font-extrabold text-brand-coral italic mt-2">"Learning Today, Leading Tomorrow..."</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -171,7 +215,7 @@ const About = () => {
                   </span>
                 </div>
                 <p className="text-gray-600 font-medium text-sm leading-relaxed text-justify mt-2 flex-grow">
-                  Oversees educational leadership, faculty mentorship, and dual-track CBSE & State Board pedagogies, ensuring every student imbibes discipline, critical thinking, and a lifelong thirst for learning.
+                  Oversees educational leadership, faculty mentorship, and State Board - CBSE Pattern pedagogies, ensuring every student imbibes discipline, critical thinking, and a lifelong thirst for learning.
                 </p>
               </div>
             </AnimatedSection>
@@ -186,7 +230,7 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {[
-              { title: 'Academic Excellence', icon: Star, color: 'text-brand-yellow', bg: 'bg-amber-50', border: 'border-brand-yellow', desc: 'Rigorous CBSE & State curricula ensuring top student outcomes.' },
+              { title: 'Academic Excellence', icon: Star, color: 'text-brand-yellow', bg: 'bg-amber-50', border: 'border-brand-yellow', desc: 'Rigorous State Board - CBSE Pattern curriculum ensuring top student outcomes.' },
               { title: 'Ethical Integrity', icon: Sparkles, color: 'text-brand-navy', bg: 'bg-slate-50', border: 'border-brand-navy', desc: 'Instilling honesty, responsibility, and civic consciousness.' },
               { title: 'Compassion & Care', icon: Heart, color: 'text-brand-coral', bg: 'bg-red-50', border: 'border-brand-coral', desc: 'Supportive teacher-student mentorship in every classroom.' },
               { title: 'Inclusive Community', icon: Users, color: 'text-brand-yellow', bg: 'bg-amber-50', border: 'border-brand-yellow', desc: 'Welcoming all learners from Koyana Velhe, Panvel, and adjoining regions.' },

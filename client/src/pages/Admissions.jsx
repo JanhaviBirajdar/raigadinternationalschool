@@ -38,7 +38,7 @@ const Admissions = () => {
     <div className="w-full pt-10 pb-20 bg-brand-light">
       <SectionTitle 
         title="Admissions 2026-27" 
-        subtitle="Join RAIGAD INTERNATIONAL school. Education is the key to Success." 
+        subtitle="Join RAIGAD INTERNATIONAL school. Nurturing Young Minds. Building Bright Futures." 
         icon={UserPlus} 
         color="brand-coral" 
       />
@@ -48,7 +48,7 @@ const Admissions = () => {
         <div className="clay-card p-6 bg-white border-2 border-brand-yellow/40 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <span className="text-xs font-black uppercase text-brand-coral tracking-wider">Admissions Desk</span>
-            <p className="font-extrabold text-brand-navy text-lg">Now Enrolling for CBSE & State Board</p>
+            <p className="font-extrabold text-brand-navy text-lg">Now Enrolling for State Board - CBSE Pattern</p>
             <p className="text-xs text-gray-600 flex items-center justify-center sm:justify-start gap-1">
               <MapPin size={14} className="text-brand-coral shrink-0" />
               <span>Koyana Velhe, Ghotkamp Koyana Vele, Taloja, Panvel 410208</span>
@@ -104,7 +104,7 @@ const Admissions = () => {
                 <CheckCircle2 size={48} />
               </div>
               <h2 className="text-3xl font-black text-brand-navy mb-3">Application Submitted!</h2>
-              <p className="text-brand-coral font-bold text-sm mb-2">"Education is the key to Success"</p>
+              <p className="text-brand-coral font-bold text-sm mb-2">"Nurturing Young Minds. Building Bright Futures."</p>
               <p className="text-gray-600 font-medium mb-6 max-w-lg mx-auto">
                 Thank you for applying to <strong>RAIGAD INTERNATIONAL school</strong>. Our admissions team at the Koyana Velhe campus will review your form and contact you shortly.
               </p>
@@ -169,8 +169,7 @@ const Admissions = () => {
                       <div>
                         <label className="block font-bold text-gray-700 mb-2">Board Track *</label>
                         <select name="board" value={formData.board} onChange={handleChange} required className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-brand-navy outline-none bg-white font-bold text-brand-navy">
-                          <option value="CBSE">CBSE Board</option>
-                          <option value="State Board">State Board</option>
+                          <option value="State Board - CBSE Pattern">State Board - CBSE Pattern</option>
                         </select>
                       </div>
                     </div>

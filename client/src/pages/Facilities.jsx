@@ -55,7 +55,7 @@ const Facilities = () => {
     <div className="w-full pt-10 pb-20 bg-brand-light">
       <SectionTitle 
         title="Campus Facilities" 
-        subtitle="World-class CBSE & State Board infrastructure at RAIGAD INTERNATIONAL school, Koyana Velhe, Panvel." 
+        subtitle="World-class State Board - CBSE Pattern infrastructure at RAIGAD INTERNATIONAL school, Koyana Velhe, Panvel." 
         icon={Building} 
         color="brand-coral" 
       />

@@ -26,7 +26,7 @@ const Faculty = () => {
       role: 'Principal',
       org: 'RAIGAD INTERNATIONAL SCHOOL',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
-      desc: 'Dedicated to fostering dual-track CBSE and State Board excellence, continuous teacher training, and an inclusive learning environment for every child.'
+      desc: 'Dedicated to fostering State Board - CBSE Pattern excellence, continuous teacher training, and an inclusive learning environment for every child.'
     }
   ];
 
