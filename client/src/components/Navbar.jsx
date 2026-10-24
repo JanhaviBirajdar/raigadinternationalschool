@@ -21,13 +21,13 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 shadow-md">
       {/* Top Notification Bar */}
-      <div className="bg-brand-navy text-white text-xs sm:text-sm py-1.5 px-4 border-b border-brand-yellow/30">
+      <div className="bg-gradient-to-r from-[#8C1626] via-[#A01728] to-[#8C1626] text-white text-xs sm:text-sm py-2 px-4 shadow-inner">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center space-x-3">
-            <span className="inline-flex items-center gap-1.5 bg-brand-coral/90 text-white font-bold px-2 py-0.5 rounded-full text-[11px] tracking-wide">
-              <Sparkles size={12} /> State Board - CBSE Pattern
+            <span className="inline-flex items-center gap-1.5 bg-white/15 text-white font-bold px-2.5 py-0.5 rounded-full text-[11px] tracking-wide border border-white/20">
+              <Sparkles size={12} className="text-amber-300" /> State Board – CBSE Pattern
             </span>
-            <span className="hidden md:inline text-gray-300 font-medium italic">
+            <span className="hidden md:inline text-white/90 font-medium italic text-xs sm:text-sm">
               "Nurturing Young Minds. Building Bright Futures."
             </span>
           </div>
@@ -36,16 +36,16 @@ const Navbar = () => {
               href="https://share.google/BnjgzEawietoNwtBE" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1 text-gray-300 hover:text-brand-yellow transition-colors"
+              className="hidden sm:flex items-center gap-1 text-white/90 hover:text-amber-300 transition-colors"
             >
-              <MapPin size={14} className="text-brand-yellow" />
+              <MapPin size={14} className="text-amber-300" />
               <span>Taloja, Panvel</span>
             </a>
             <a 
               href="tel:08169568369" 
-              className="flex items-center gap-1.5 text-brand-yellow font-bold hover:underline"
+              className="flex items-center gap-1.5 text-amber-300 font-bold hover:underline"
             >
-              <Phone size={14} className="text-brand-yellow animate-bounce" />
+              <Phone size={14} className="text-amber-300 animate-pulse" />
               <span>081695 68369</span>
             </a>
           </div>
@@ -53,14 +53,14 @@ const Navbar = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="bg-white/95 backdrop-blur-md border-b-4 border-brand-yellow">
+      <nav className="bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             
             <Link to="/" className="flex items-center space-x-3 group">
               <img 
                 src={logoImg} 
-                alt="RAIGAD INTERNATIONAL school Logo" 
+                alt="RAIGAD INTERNATIONAL School Logo" 
                 className="h-14 sm:h-16 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform" 
               />
               <div className="flex flex-col">
@@ -68,8 +68,8 @@ const Navbar = () => {
                   RAIGAD INTERNATIONAL
                 </span>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="font-extrabold text-xs sm:text-sm tracking-widest text-brand-coral uppercase">
-                    School
+                  <span className="font-extrabold text-xs sm:text-sm tracking-widest text-[#C8102E] uppercase">
+                    SCHOOL
                   </span>
                   <span className="text-[10px] sm:text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
                     State Board - CBSE Pattern
@@ -78,17 +78,17 @@ const Navbar = () => {
               </div>
             </Link>
 
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-1.5">
               {links.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`px-3.5 py-2 rounded-full font-bold text-sm transition-all duration-300 ${
+                    className={`px-4 py-2 rounded-full font-bold text-sm transition-all duration-200 ${
                       isActive 
-                        ? 'bg-brand-navy text-white shadow-[0_4px_0_#C8102E] -translate-y-0.5' 
-                        : 'text-gray-700 hover:text-brand-navy hover:bg-gray-100'
+                        ? 'bg-[#0B2545] text-white shadow-sm' 
+                        : 'text-gray-700 hover:text-[#0B2545] hover:bg-gray-100'
                     }`}
                   >
                     {link.name}
@@ -97,7 +97,7 @@ const Navbar = () => {
               })}
               <Link
                 to="/admissions"
-                className="ml-2 clay-button bg-brand-coral text-white text-xs px-4 py-2 hover:bg-red-700"
+                className="ml-2 bg-[#C8102E] hover:bg-red-700 text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
               >
                 Apply Now
               </Link>

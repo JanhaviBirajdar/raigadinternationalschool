@@ -2,112 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { GraduationCap, Users, BookOpen, Trophy, ShieldCheck, MonitorPlay, HeartHandshake, Globe2, MapPin, Phone, ExternalLink, Award, Sparkles, Target, Flag } from 'lucide-react';
-import ThreeCanvas from '../components/ThreeCanvas';
+import HeroSection from '../components/HeroSection';
 import AnimatedSection from '../components/AnimatedSection';
 import StatsCounter from '../components/StatsCounter';
 import SectionTitle from '../components/SectionTitle';
-import logoImg from '../assets/logo.png';
 
 const Home = () => {
   return (
     <div className="w-full">
       {/* 1. Hero Section */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-brand-light via-blue-50/40 to-amber-50/30 py-16 sm:py-24">
-        <ThreeCanvas />
-
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          {/* Logo Crest Badge */}
-          <motion.div
-            initial={{ scale: 0, rotate: -10 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', bounce: 0.4, duration: 1 }}
-            className="inline-block p-3 sm:p-4 bg-white rounded-3xl shadow-2xl mb-6 border-4 border-brand-yellow"
-          >
-            <img
-              src={logoImg}
-              alt="RAIGAD INTERNATIONAL SCHOOL Crest"
-              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain mx-auto"
-            />
-          </motion.div>
-
-          {/* Board Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap items-center justify-center gap-2 mb-4"
-          >
-            <span className="px-4 py-1.5 rounded-full bg-brand-navy text-white text-xs sm:text-sm font-black tracking-wider uppercase shadow-md flex items-center gap-1.5">
-              <Sparkles size={14} className="text-brand-yellow" /> State Board - CBSE Pattern
-            </span>
-            <span className="px-4 py-1.5 rounded-full bg-brand-coral/10 text-brand-coral border border-brand-coral/20 text-xs sm:text-sm font-bold">
-              Taloja, Panvel Campus
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-black text-brand-navy mb-4 tracking-tight drop-shadow-sm uppercase"
-          >
-            RAIGAD INTERNATIONAL <span className="text-brand-coral font-extrabold italic block sm:inline">SCHOOL</span>
-          </motion.h1>
-
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
-            className="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-yellow drop-shadow-sm mb-4 tracking-wide italic"
-          >
-            "Nurturing Young Minds. Building Bright Futures."
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
-            className="text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed"
-          >
-            Providing world-class holistic education through State Board - CBSE Pattern curriculum at Koyana Velhe, Panvel. Inspiring young achievers to lead with intellect and character.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row justify-center items-center gap-4 pointer-events-auto"
-          >
-            <Link to="/admissions" className="clay-button bg-brand-coral hover:bg-red-700 text-white text-base sm:text-lg px-8 py-3.5 shadow-lg">
-              Apply for Admission 2026-27
-            </Link>
-            <a
-              href="tel:08169568369"
-              className="clay-button bg-brand-navy text-white text-base sm:text-lg px-8 py-3.5 flex items-center gap-2 hover:bg-slate-900 shadow-lg"
-            >
-              <Phone size={20} className="text-brand-yellow" />
-              081695 68369
-            </a>
-            <a
-              href="https://share.google/BnjgzEawietoNwtBE"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="clay-button bg-white text-brand-navy text-base sm:text-lg px-6 py-3.5 border-2 border-brand-yellow flex items-center gap-2 hover:bg-amber-50"
-            >
-              <MapPin size={20} className="text-brand-coral" />
-              View Location
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Custom shape divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 fill-white">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.5,193,101.43,237.9,88.4,281.33,71.24,321.39,56.44Z"></path>
-          </svg>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* 2. Key Highlights Banner */}
       <section className="py-8 bg-white border-b border-gray-100">
