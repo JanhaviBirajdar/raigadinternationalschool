@@ -8,7 +8,7 @@ import logoImg from '../assets/logo.png';
 const About = () => {
   return (
     <div className="w-full pt-10 pb-20">
-      
+
       {/* 1. Header */}
       <section className="py-16 text-center max-w-4xl mx-auto px-4">
         <AnimatedSection>
@@ -33,17 +33,17 @@ const About = () => {
       {/* 2. Vision & Mission Section with Building Image */}
       <section className="py-20 bg-brand-light">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle 
-            title="Our Vision & Mission" 
-            subtitle="Building global citizens through nurturing, innovation, and educational excellence." 
-            icon={Target} 
-            color="brand-coral" 
+          <SectionTitle
+            title="Our Vision & Mission"
+            subtitle="Building global citizens through nurturing, innovation, and educational excellence."
+            icon={Target}
+            color="brand-coral"
           />
 
           <div className="grid lg:grid-cols-12 gap-10 items-start mt-12">
             {/* Vision and Mission Content */}
             <div className="lg:col-span-7 flex flex-col space-y-8">
-              
+
               {/* Vision Box */}
               <AnimatedSection delay={0.1}>
                 <div className="clay-card p-8 border-l-8 border-brand-yellow bg-white shadow-lg">
@@ -122,10 +122,10 @@ const About = () => {
               <AnimatedSection delay={0.3} className="h-full sticky top-24">
                 <div className="clay-card p-4 sm:p-6 bg-white flex flex-col justify-between border-4 border-brand-yellow/30 shadow-xl">
                   <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-gray-100 flex-grow flex items-center justify-center p-2 min-h-[380px]">
-                    <img 
-                      src="/school_building.png" 
-                      alt="RAIGAD INTERNATIONAL SCHOOL Campus Building" 
-                      className="w-full h-auto max-h-[480px] object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500" 
+                    <img
+                      src="/school_building.png"
+                      alt="RAIGAD INTERNATIONAL SCHOOL Campus Building"
+                      className="w-full h-auto max-h-[480px] object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-4 left-4 bg-brand-navy/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-bold border border-brand-yellow/40">
                       Modern Campus Infrastructure
@@ -146,11 +146,11 @@ const About = () => {
       {/* 3. Meet Our Team Section (From Official Brochure) */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle 
-            title="Meet Our Team" 
-            subtitle="The visionary leadership steering academic excellence and character development." 
-            icon={Users} 
-            color="brand-navy" 
+          <SectionTitle
+            title="Meet Our Team"
+            subtitle="The visionary leadership steering academic excellence and character development."
+            icon={Users}
+            color="brand-navy"
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
@@ -158,10 +158,10 @@ const About = () => {
             <AnimatedSection delay={0.1}>
               <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-coral bg-white group hover:-translate-y-2 transition-all">
                 <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-coral shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
-                  <img 
-                    src="/dr_venkat_alat.png" 
-                    alt="Dr. Venkat Alat - Trustee" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                  <img
+                    src="/dr_venkat_alat.png"
+                    alt="Dr. Venkat Alat - Trustee"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="text-center mb-4">
@@ -180,10 +180,10 @@ const About = () => {
             <AnimatedSection delay={0.2}>
               <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-navy bg-white group hover:-translate-y-2 transition-all">
                 <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-navy shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
-                  <img 
-                    src="/abhijeet_deshmukh.png" 
-                    alt="Abhijeet Deshmukh - Secretary" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                  <img
+                    src="/abhijeet_deshmukh.png"
+                    alt="Abhijeet Deshmukh - Secretary"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="text-center mb-4">
@@ -202,10 +202,10 @@ const About = () => {
             <AnimatedSection delay={0.3} className="md:col-span-2 lg:col-span-1">
               <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-yellow bg-white group hover:-translate-y-2 transition-all">
                 <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-yellow shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
-                  <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" 
-                    alt="Mrs. Ashwini Deshmukh - Principal" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                  <img
+                    src="/dummy.png"
+                    alt="Mrs. Ashwini Deshmukh - Principal"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="text-center mb-4">
@@ -227,7 +227,7 @@ const About = () => {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <SectionTitle title="Our Core Values" subtitle="The principles that guide our everyday teaching at RAIGAD INTERNATIONAL school." icon={Heart} color="brand-coral" />
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {[
               { title: 'Academic Excellence', icon: Star, color: 'text-brand-yellow', bg: 'bg-amber-50', border: 'border-brand-yellow', desc: 'Rigorous State Board - CBSE Pattern curriculum ensuring top student outcomes.' },

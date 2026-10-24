@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: 'Admissions', path: '/admissions' },
     { name: 'Facilities', path: '/facilities' },
     { name: 'Events', path: '/events' },
-    { name: 'Faculty', path: '/faculty' },
+    // { name: 'Faculty', path: '/faculty' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -32,17 +32,17 @@ const Navbar = () => {
             </span>
           </div>
           <div className="flex items-center space-x-4 ml-auto text-xs sm:text-sm">
-            <a 
-              href="https://share.google/BnjgzEawietoNwtBE" 
-              target="_blank" 
+            <a
+              href="https://share.google/BnjgzEawietoNwtBE"
+              target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-1 text-white/90 hover:text-amber-300 transition-colors"
             >
               <MapPin size={14} className="text-amber-300" />
               <span>Taloja, Panvel</span>
             </a>
-            <a 
-              href="tel:08169568369" 
+            <a
+              href="tel:08169568369"
               className="flex items-center gap-1.5 text-amber-300 font-bold hover:underline"
             >
               <Phone size={14} className="text-amber-300 animate-pulse" />
@@ -56,12 +56,12 @@ const Navbar = () => {
       <nav className="bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            
+
             <Link to="/" className="flex items-center space-x-3 group">
-              <img 
-                src={logoImg} 
-                alt="RAIGAD INTERNATIONAL School Logo" 
-                className="h-14 sm:h-16 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform" 
+              <img
+                src={logoImg}
+                alt="RAIGAD INTERNATIONAL School Logo"
+                className="h-14 sm:h-16 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
               />
               <div className="flex flex-col">
                 <span className="font-black text-lg sm:text-xl md:text-2xl text-brand-navy tracking-tight leading-none group-hover:text-brand-coral transition-colors">
@@ -85,11 +85,10 @@ const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`px-4 py-2 rounded-full font-bold text-sm transition-all duration-200 ${
-                      isActive 
-                        ? 'bg-[#0B2545] text-white shadow-sm' 
+                    className={`px-4 py-2 rounded-full font-bold text-sm transition-all duration-200 ${isActive
+                        ? 'bg-[#0B2545] text-white shadow-sm'
                         : 'text-gray-700 hover:text-[#0B2545] hover:bg-gray-100'
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -104,7 +103,7 @@ const Navbar = () => {
             </div>
 
             <div className="lg:hidden flex items-center space-x-2">
-              <a 
+              <a
                 href="tel:08169568369"
                 className="p-2 rounded-xl bg-brand-yellow/20 text-brand-navy font-bold text-xs flex items-center gap-1"
                 aria-label="Call School"
@@ -140,11 +139,10 @@ const Navbar = () => {
                     key={link.name}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${
-                      isActive 
-                        ? 'bg-brand-navy text-white' 
+                    className={`block px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${isActive
+                        ? 'bg-brand-navy text-white'
                         : 'text-brand-dark hover:bg-gray-100'
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>

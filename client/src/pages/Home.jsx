@@ -42,12 +42,14 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-4">
           <AnimatedSection className="flex flex-col md:flex-row items-center gap-12">
             <div className="w-full md:w-1/2 flex justify-center">
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-[40px] bg-gradient-to-tr from-brand-navy to-brand-coral p-2 rotate-2 hover:rotate-0 transition-all duration-500 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
-                  alt="Principal - RAIGAD INTERNATIONAL SCHOOL"
-                  className="w-full h-full object-cover rounded-[32px]"
-                />
+              <div className="relative w-72 h-80 sm:w-80 sm:h-96 rounded-[40px] bg-gradient-to-tr from-brand-navy to-brand-coral p-2 rotate-2 hover:rotate-0 transition-all duration-500 shadow-2xl">
+                <div className="w-full h-full bg-white rounded-[32px] overflow-hidden flex items-center justify-center p-3">
+                  <img
+                    src="/school_building.png"
+                    alt="RAIGAD INTERNATIONAL SCHOOL Campus Building"
+                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-500 drop-shadow-md"
+                  />
+                </div>
                 <div className="absolute -bottom-5 -right-4 bg-white p-3.5 rounded-3xl shadow-xl flex items-center gap-2.5 border-2 border-brand-yellow">
                   <div className="w-3.5 h-3.5 bg-green-500 rounded-full animate-pulse" />
                   <span className="font-bold text-xs text-gray-800">Campus Open for Visits</span>

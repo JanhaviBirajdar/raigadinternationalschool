@@ -270,7 +270,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="absolute top-2 left-4 sm:left-6 w-[340px] sm:w-[410px] md:w-[430px] h-[210px] sm:h-[250px] md:h-[265px] z-20"
+                className="absolute top-2 left-3 sm:left-5 w-[330px] sm:w-[410px] md:w-[430px] h-[205px] sm:h-[245px] md:h-[260px] z-20"
               >
                 {/* Red Curved Ribbon Shell */}
                 <div className="w-full h-full p-2.5 sm:p-3 bg-gradient-to-tr from-[#9B1120] via-[#C8102E] to-[#BD192B] rounded-[52px_32px_56px_28px] shadow-[0_16px_36px_rgba(185,28,28,0.32)]">
@@ -285,12 +285,12 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* ----------------- FRAME 2 (BOTTOM-RIGHT): Younger Kids with Blocks ----------------- */}
+              {/* ----------------- FRAME 2 (MIDDLE-RIGHT): Younger Kids with Blocks ----------------- */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.88, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.35 }}
-                className="absolute bottom-6 right-0 sm:right-2 w-[210px] sm:w-[245px] md:w-[260px] h-[155px] sm:h-[180px] md:h-[195px] z-20"
+                className="absolute top-[225px] sm:top-[255px] md:top-[265px] right-1 sm:right-3 w-[205px] sm:w-[240px] md:w-[255px] h-[145px] sm:h-[165px] md:h-[175px] z-10"
               >
                 {/* Red Curved Ribbon Shell */}
                 <div className="w-full h-full p-2.5 bg-gradient-to-tr from-[#8E1220] via-[#C8102E] to-[#BD192B] rounded-[36px_48px_32px_44px] shadow-[0_12px_28px_rgba(0,0,0,0.18)]">
@@ -305,12 +305,12 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* ----------------- FRAME 3 (BOTTOM-CENTER): Smiling Student Girl ----------------- */}
+              {/* ----------------- FRAME 3 (BOTTOM-LEFT/CENTER): Smiling Student Girl ----------------- */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.88, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
-                className="absolute bottom-2 left-20 sm:left-24 w-[165px] sm:w-[195px] md:w-[210px] h-[140px] sm:h-[165px] md:h-[175px] z-20"
+                className="absolute bottom-2 sm:bottom-4 left-8 sm:left-14 w-[170px] sm:w-[195px] md:w-[210px] h-[140px] sm:h-[160px] md:h-[170px] z-10"
               >
                 {/* Red Curved Ribbon Shell */}
                 <div className="w-full h-full p-2 bg-gradient-to-tr from-[#9B1120] to-[#C8102E] rounded-[40px_30px_44px_28px] shadow-[0_12px_28px_rgba(0,0,0,0.18)]">
@@ -325,14 +325,14 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* ----------------- SCHOOL CREST MEDALLION BADGE ----------------- */}
+              {/* ----------------- SCHOOL CREST MEDALLION BADGE (POSITIONED AT BOTTOM RIGHT, NO OVERLAP) ----------------- */}
               <motion.div
                 initial={{ scale: 0, rotate: -20 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: 'spring', bounce: 0.45, duration: 1, delay: 0.6 }}
-                className="absolute bottom-14 right-20 sm:right-28 z-30"
+                className="absolute bottom-1 sm:bottom-2 right-2 sm:right-6 z-20"
               >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white p-2.5 shadow-[0_12px_28px_rgba(11,37,69,0.28)] border-4 border-white flex items-center justify-center transform hover:scale-105 transition-transform duration-300">
+                <div className="w-18 h-18 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-full bg-white p-2 sm:p-2.5 shadow-[0_12px_28px_rgba(11,37,69,0.25)] border-4 border-white flex items-center justify-center transform hover:scale-105 transition-transform duration-300">
                   <img
                     src={logoImg}
                     alt="Raigad International School Crest"
