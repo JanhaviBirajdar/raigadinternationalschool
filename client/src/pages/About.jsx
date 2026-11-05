@@ -159,7 +159,7 @@ const About = () => {
               <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-coral bg-white group hover:-translate-y-2 transition-all">
                 <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-coral shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
                   <img
-                    src="/dr_venkat_alat.png"
+                    src="/dr_venkat_alat.jpeg"
                     alt="Dr. Venkat Alat - Trustee"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -181,7 +181,7 @@ const About = () => {
               <div className="clay-card h-full flex flex-col p-8 border-t-8 border-brand-navy bg-white group hover:-translate-y-2 transition-all">
                 <div className="w-36 h-36 mx-auto rounded-3xl overflow-hidden border-4 border-brand-navy shadow-lg mb-6 bg-gray-100 flex items-center justify-center">
                   <img
-                    src="/abhijeet_deshmukh.png"
+                    src="/abhijeet_deshmukh.jpeg"
                     alt="Abhijeet Deshmukh - Secretary"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />

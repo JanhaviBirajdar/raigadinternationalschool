@@ -221,14 +221,14 @@ const Home = () => {
               <AnimatedSection delay={0.4}>
                 <div className="grid sm:grid-cols-2 gap-4 pt-2">
                   <div className="p-4 bg-white rounded-2xl border-2 border-brand-coral/20 flex items-center gap-3 shadow-sm">
-                    <img src="/dr_venkat_alat.png" alt="Dr. Venkat Alat" className="w-14 h-14 rounded-xl object-cover shrink-0 border border-brand-coral" />
+                    <img src="/dr_venkat_alat.jpeg" alt="Dr. Venkat Alat" className="w-14 h-14 rounded-xl object-cover shrink-0 border border-brand-coral" />
                     <div>
                       <h4 className="font-extrabold text-sm text-brand-navy">Dr. Venkat Alat</h4>
                       <p className="text-xs font-bold text-brand-coral">Trustee, Raigad Int. School</p>
                     </div>
                   </div>
                   <div className="p-4 bg-white rounded-2xl border-2 border-brand-navy/20 flex items-center gap-3 shadow-sm">
-                    <img src="/abhijeet_deshmukh.png" alt="Abhijeet Deshmukh" className="w-14 h-14 rounded-xl object-cover shrink-0 border border-brand-navy" />
+                    <img src="/abhijeet_deshmukh.jpeg" alt="Abhijeet Deshmukh" className="w-14 h-14 rounded-xl object-cover shrink-0 border border-brand-navy" />
                     <div>
                       <h4 className="font-extrabold text-sm text-brand-navy">Abhijeet Deshmukh</h4>
                       <p className="text-xs font-bold text-brand-navy">Secretary, Sakar Org.</p>
