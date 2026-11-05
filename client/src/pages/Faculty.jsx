@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Users, Mail, Star, Award, ShieldCheck } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
+import drVenkatImg from '../assets/dr_venkat_alat.jpg';
+import abhijeetImg from '../assets/abhijeet_deshmukh.jpg';
 
 const Faculty = () => {
   const [filter, setFilter] = useState('all');
@@ -11,14 +13,14 @@ const Faculty = () => {
       name: 'Dr. Venkat Alat',
       role: 'Trustee',
       org: 'Raigadh International School',
-      image: '/dr_venkat_alat.png',
+      image: drVenkatImg,
       desc: 'Holds a visionary commitment to providing the highest quality education to our young learners, with a strong focus on their overall development and future success.'
     },
     {
       name: 'Abhijeet Deshmukh',
       role: 'Secretary',
       org: 'Sakar Social & Educational Organization',
-      image: '/abhijeet_deshmukh.png',
+      image: abhijeetImg,
       desc: 'S.S.H. School and Junior College Kamothe; Secretary, Sakar Social and Educational Organization, driving educational reach, community trust, and academic standards.'
     },
     {
