@@ -8,8 +8,44 @@ import StatsCounter from '../components/StatsCounter';
 import SectionTitle from '../components/SectionTitle';
 import drVenkatImg from '../assets/dr_venkat_alat.jpg';
 import abhijeetImg from '../assets/abhijeet_deshmukh.jpg';
+import useSEO from '../hooks/useSEO';
+
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "School",
+  "name": "Raigad International School",
+  "url": "https://www.raigadinternationalschool.com",
+  "logo": "https://www.raigadinternationalschool.com/logo.png",
+  "image": "https://www.raigadinternationalschool.com/school_building.png",
+  "description": "Raigad International School offers State Board and CBSE Pattern education at Koyana Velhe, Taloja, Panvel, Maharashtra. Nurturing Young Minds. Building Bright Futures.",
+  "telephone": "+918169568369",
+  "email": "info@raigadinternationalschool.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Koyana Velhe, Ghotkamp Koyana Vele",
+    "addressLocality": "Taloja, Panvel",
+    "addressRegion": "Maharashtra",
+    "postalCode": "410208",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "16:00"
+  }],
+  "hasMap": "https://share.google/BnjgzEawietoNwtBE",
+  "areaServed": ["Panvel", "Taloja", "Kharghar", "Kamothe", "Navi Mumbai", "Raigad"]
+};
 
 const Home = () => {
+  useSEO({
+    title: 'Raigad International School | Best School in Panvel, Taloja | Admissions Open 2026-27',
+    description: 'Raigad International School — State Board & CBSE Pattern school in Koyana Velhe, Taloja, Panvel, Maharashtra 410208. Admissions open 2026-27. Holistic education, digital classrooms & sports. Call 081695 68369.',
+    canonical: '/',
+    jsonLd: homeJsonLd,
+  });
+
   return (
     <div className="w-full">
       {/* 1. Hero Section */}

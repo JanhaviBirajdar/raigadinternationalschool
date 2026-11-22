@@ -53,7 +53,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <nav className="bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
 

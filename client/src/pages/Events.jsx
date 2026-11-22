@@ -3,8 +3,30 @@ import { Calendar as CalendarIcon, MapPin, Clock, Filter, Image as ImageIcon } f
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
 import axios from 'axios';
+import useSEO from '../hooks/useSEO';
+
+const eventsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Events & Campus Life | Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/events",
+  "description": "Stay updated with upcoming and past events at Raigad International School — sports days, science fairs, cultural festivals and more.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raigadinternationalschool.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Events", "item": "https://www.raigadinternationalschool.com/events" }
+    ]
+  }
+};
 
 const Events = () => {
+  useSEO({
+    title: 'Events & Campus Life | Sports Day, Science Fair & More | Raigad International School',
+    description: 'Vibrant school events and campus life at Raigad International School, Panvel. Sports days, science fairs, cultural festivals, and extracurricular activities nurturing every student.',
+    canonical: '/events',
+    jsonLd: eventsJsonLd,
+  });
   const [events, setEvents] = useState([]);
   const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);

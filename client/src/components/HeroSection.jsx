@@ -278,8 +278,11 @@ const HeroSection = () => {
                   <div className="w-full h-full p-1 bg-white rounded-[44px_24px_48px_20px]">
                     <img
                       src={classroomImg}
-                      alt="Raigad International School Students in Classroom"
+                      alt="Raigad International School students collaborating in a modern classroom"
                       className="w-full h-full object-cover rounded-[40px_20px_44px_16px]"
+                      fetchpriority="high"
+                      width="430"
+                      height="260"
                     />
                   </div>
                 </div>
@@ -298,8 +301,11 @@ const HeroSection = () => {
                   <div className="w-full h-full p-1 bg-white rounded-[30px_42px_26px_38px]">
                     <img
                       src={blocksImg}
-                      alt="Primary Students Engaging in Activity Learning"
+                      alt="Primary school students engaged in activity-based learning at Raigad International School"
                       className="w-full h-full object-cover rounded-[26px_38px_22px_34px]"
+                      loading="lazy"
+                      width="255"
+                      height="175"
                     />
                   </div>
                 </div>
@@ -318,8 +324,11 @@ const HeroSection = () => {
                   <div className="w-full h-full p-1 bg-white rounded-[34px_24px_38px_22px]">
                     <img
                       src={studentImg}
-                      alt="Happy Achiever Student of Raigad International School"
+                      alt="Happy achiever student smiling at Raigad International School Panvel"
                       className="w-full h-full object-cover rounded-[30px_20px_34px_18px]"
+                      loading="lazy"
+                      width="210"
+                      height="170"
                     />
                   </div>
                 </div>

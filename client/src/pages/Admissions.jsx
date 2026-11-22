@@ -4,8 +4,36 @@ import { UserPlus, Calendar, FileText, CheckCircle2, ChevronRight, Phone, MapPin
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
 import axios from 'axios';
+import useSEO from '../hooks/useSEO';
+
+const admissionsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Admissions 2026-27 | Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/admissions",
+  "description": "Apply for admissions 2026-27 at Raigad International School, Taloja, Panvel. State Board and CBSE Pattern. Call 081695 68369.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raigadinternationalschool.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Admissions", "item": "https://www.raigadinternationalschool.com/admissions" }
+    ]
+  },
+  "mainEntity": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "School Admission 2026-27",
+    "educationalLevel": "Kindergarten to Grade 10",
+    "credentialCategory": "School Enrollment"
+  }
+};
 
 const Admissions = () => {
+  useSEO({
+    title: 'Admissions 2026-27 | Apply Now | Raigad International School Panvel',
+    description: 'Admissions open 2026-27 at Raigad International School, Taloja, Panvel. State Board & CBSE Pattern. Apply online or call 081695 68369. Limited seats available for Kindergarten to Grade 10.',
+    canonical: '/admissions',
+    jsonLd: admissionsJsonLd,
+  });
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     studentName: '', dob: '', grade: '', board: 'CBSE',

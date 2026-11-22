@@ -4,8 +4,30 @@ import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
 import drVenkatImg from '../assets/dr_venkat_alat.jpg';
 import abhijeetImg from '../assets/abhijeet_deshmukh.jpg';
+import useSEO from '../hooks/useSEO';
+
+const facultyJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Faculty & Leadership | Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/faculty",
+  "description": "Meet the dedicated leadership and faculty of Raigad International School in Panvel, Maharashtra — expert educators guiding every student.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raigadinternationalschool.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Faculty", "item": "https://www.raigadinternationalschool.com/faculty" }
+    ]
+  }
+};
 
 const Faculty = () => {
+  useSEO({
+    title: 'Faculty & Leadership | Expert Educators | Raigad International School Panvel',
+    description: 'Meet the expert faculty and leadership of Raigad International School. 150+ experienced teachers dedicated to CBSE & State Board excellence in Taloja, Panvel, Maharashtra.',
+    canonical: '/faculty',
+    jsonLd: facultyJsonLd,
+  });
   const [filter, setFilter] = useState('all');
 
   const leadership = [

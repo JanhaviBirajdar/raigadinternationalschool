@@ -3,8 +3,43 @@ import { MapPin, Phone, Mail, Send, CheckCircle2, ExternalLink, Sparkles } from 
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
 import axios from 'axios';
+import useSEO from '../hooks/useSEO';
+
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/contact",
+  "description": "Contact Raigad International School for admissions, campus tours, and academic inquiries. Located in Koyana Velhe, Taloja, Panvel, Maharashtra 410208.",
+  "mainEntity": {
+    "@type": "School",
+    "name": "Raigad International School",
+    "telephone": "+918169568369",
+    "email": "info@raigadinternationalschool.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Koyana Velhe, Ghotkamp Koyana Vele",
+      "addressLocality": "Taloja, Panvel",
+      "addressRegion": "Maharashtra",
+      "postalCode": "410208",
+      "addressCountry": "IN"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "08:00",
+      "closes": "16:00"
+    }]
+  }
+};
 
 const Contact = () => {
+  useSEO({
+    title: 'Contact Us | Admissions & Enquiries | Raigad International School Panvel',
+    description: 'Contact Raigad International School for admissions and enquiries. Address: Koyana Velhe, Taloja, Panvel 410208, Maharashtra. Call: 081695 68369. Email: info@raigadinternationalschool.com.',
+    canonical: '/contact',
+    jsonLd: contactJsonLd,
+  });
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const [errorMessage, setErrorMessage] = useState('');

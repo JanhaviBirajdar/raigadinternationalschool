@@ -3,8 +3,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Book, Beaker, Code, Palette, ChevronDown, CheckCircle2, Award, Sparkles } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
+import useSEO from '../hooks/useSEO';
+
+const academicsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Academics & Curriculum | Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/academics",
+  "description": "Raigad International School offers CBSE Pattern and Maharashtra State Board curriculum from Kindergarten to Grade 10 in Taloja, Panvel.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raigadinternationalschool.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Academics", "item": "https://www.raigadinternationalschool.com/academics" }
+    ]
+  }
+};
 
 const Academics = () => {
+  useSEO({
+    title: 'Academics & Curriculum | CBSE & State Board | Raigad International School Panvel',
+    description: 'Explore CBSE Pattern and Maharashtra State Board curriculum at Raigad International School. Kindergarten to Grade 10 with digital classrooms, STEM labs, and holistic development in Taloja, Panvel.',
+    canonical: '/academics',
+    jsonLd: academicsJsonLd,
+  });
   const [activeBoard, setActiveBoard] = useState('cbse');
   const [activeTab, setActiveTab] = useState('primary');
   const [activeSubject, setActiveSubject] = useState(null);

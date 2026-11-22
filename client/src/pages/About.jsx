@@ -7,8 +7,37 @@ import logoImg from '../assets/logo.png';
 import drVenkatImg from '../assets/dr_venkat_alat.jpg';
 import abhijeetImg from '../assets/abhijeet_deshmukh.jpg';
 import dummyImg from '../assets/dummy.png';
+import useSEO from '../hooks/useSEO';
+
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/about",
+  "description": "Learn about Raigad International School's vision, mission, core values, and leadership team in Taloja, Panvel, Maharashtra.",
+  "mainEntity": {
+    "@type": "School",
+    "name": "Raigad International School",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Koyana Velhe, Ghotkamp Koyana Vele",
+      "addressLocality": "Taloja, Panvel",
+      "addressRegion": "Maharashtra",
+      "postalCode": "410208",
+      "addressCountry": "IN"
+    },
+    "foundingDate": "2020",
+    "slogan": "Nurturing Young Minds. Building Bright Futures."
+  }
+};
 
 const About = () => {
+  useSEO({
+    title: 'About Us | Raigad International School — Vision, Mission & Leadership | Panvel',
+    description: 'Discover the vision, mission, and leadership of Raigad International School. CBSE-pattern education in Koyana Velhe, Taloja, Panvel, Maharashtra. Building confident, compassionate global citizens.',
+    canonical: '/about',
+    jsonLd: aboutJsonLd,
+  });
   return (
     <div className="w-full pt-10 pb-20">
 

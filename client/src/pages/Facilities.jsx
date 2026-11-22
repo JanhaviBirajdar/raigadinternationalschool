@@ -2,8 +2,30 @@ import React, { useState } from 'react';
 import { Building, Library, Microscope, Dumbbell, MonitorPlay, Trees } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import SectionTitle from '../components/SectionTitle';
+import useSEO from '../hooks/useSEO';
+
+const facilitiesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Campus Facilities | Raigad International School",
+  "url": "https://www.raigadinternationalschool.com/facilities",
+  "description": "World-class facilities at Raigad International School: smart classrooms, science labs, library, sports complex, and green campus in Koyana Velhe, Panvel.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raigadinternationalschool.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Facilities", "item": "https://www.raigadinternationalschool.com/facilities" }
+    ]
+  }
+};
 
 const Facilities = () => {
+  useSEO({
+    title: 'Campus Facilities | Smart Classrooms, Labs & Sports | Raigad International School',
+    description: 'Explore world-class facilities at Raigad International School — digital smart classrooms, modern science labs, central library, sports complex, and eco-friendly green campus in Taloja, Panvel.',
+    canonical: '/facilities',
+    jsonLd: facilitiesJsonLd,
+  });
   const [activeFacility, setActiveFacility] = useState(0);
 
   const facilities = [
